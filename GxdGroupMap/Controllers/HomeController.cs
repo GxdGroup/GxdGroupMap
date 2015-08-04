@@ -10,6 +10,7 @@ namespace GxdGroupMap.Controllers
     {
         public ActionResult Index()
         {
+            int i = 1;
             return View();
         }
 
