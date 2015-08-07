@@ -16,4 +16,5 @@ require(['obmap'], function (obmap) {
     $('#picturebutton').click(function () {
         $.obear.AddPicture(map, "http://developer.baidu.com/map/jsdemo/img/fox.gif", 116.404, 39.915);
     });
+    $("#searchbutton").click(function(){$.obear.Search(map,$("#searchaddress").val());});
 });
