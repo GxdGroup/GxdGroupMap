@@ -57,8 +57,11 @@
         marker2.enableDragging();  
         map.addOverlay(marker2); //放置图标
     }
-    //obear.Search=function(map,array)
-    //{
-    //    var 
-    //}
+    obear.Search=function(map,array)
+    {                  
+        var local = new BMap.LocalSearch(map, {
+            renderOptions: { map: map }
+        });
+        local.search(array);
+    }
 });
