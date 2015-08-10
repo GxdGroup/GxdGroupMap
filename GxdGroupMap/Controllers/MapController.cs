@@ -15,8 +15,8 @@ namespace GxdGroupMap.Controllers
         {
             int Id = 1;
             string commandText = @"SELECT * FROM b_community where Id = @Id";
-            IEnumerable<Community> comlists = DbHelper.Query<Community>(commandText, new { Id = Id }, null);
-            List<Community> _comlists = comlists.ToList<Community>();
+            Community comlists = DbHelper.QueryOne<Community>(commandText, new { Id = Id }, null, true, null, System.Data.CommandType.Text);
+            //List<Community> _comlists = comlists.ToList<Community>();
             return View();
         }
 

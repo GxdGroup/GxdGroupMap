@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Gxd.Domain
 {
-    public sealed class DBConnFactory
+    public class DBConnFactory
     {
         private ConnectionStringSettings connectionStringSettings = ConfigurationManager.ConnectionStrings["DbConnection"];
         private static DBConnFactory _instance;
