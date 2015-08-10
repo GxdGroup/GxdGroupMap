@@ -253,6 +253,16 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gxd.Domain\Gxd.Domain.csproj">
+      <Project>{a610444d-b8db-42d5-a121-dc66171d5199}</Project>
+      <Name>Gxd.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Models\Gxd.Models.csproj">
+      <Project>{a53724b6-cda5-4167-a2df-ed850e4bdf97}</Project>
+      <Name>Gxd.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
