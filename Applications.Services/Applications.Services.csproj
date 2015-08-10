@@ -78,7 +78,9 @@
   <ItemGroup>
     <Compile Include="AreaService.cs" />
     <Compile Include="Configs\IocConfig.cs" />
+    <Compile Include="EntityServices\AreaService.cs" />
     <Compile Include="IAreaService.cs" />
+    <Compile Include="IEntityContracts\IAreaContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +91,22 @@
     <ProjectReference Include="..\Gxd.DI.Autofac\Gxd.DI.Autofac.csproj">
       <Project>{6355af3b-076e-45e5-8a87-552bb0656153}</Project>
       <Name>Gxd.DI.Autofac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Domain.Infrastructure\Gxd.Domain.Infrastructure.csproj">
+      <Project>{af1bd5f5-93fe-414b-a797-82b1bbdfc50b}</Project>
+      <Name>Gxd.Domain.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Domain.Repository\Gxd.Domain.Repository.csproj">
+      <Project>{a9505963-6cb6-4858-af61-e160ad7b734a}</Project>
+      <Name>Gxd.Domain.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Domain\Gxd.Domain.csproj">
+      <Project>{a610444d-b8db-42d5-a121-dc66171d5199}</Project>
+      <Name>Gxd.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Models\Gxd.Models.csproj">
+      <Project>{a53724b6-cda5-4167-a2df-ed850e4bdf97}</Project>
+      <Name>Gxd.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

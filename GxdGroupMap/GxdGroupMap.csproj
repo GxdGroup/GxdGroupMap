@@ -278,6 +278,10 @@
       <Project>{6355af3b-076e-45e5-8a87-552bb0656153}</Project>
       <Name>Gxd.DI.Autofac</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gxd.Domain.Infrastructure\Gxd.Domain.Infrastructure.csproj">
+      <Project>{af1bd5f5-93fe-414b-a797-82b1bbdfc50b}</Project>
+      <Name>Gxd.Domain.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gxd.Domain\Gxd.Domain.csproj">
       <Project>{a610444d-b8db-42d5-a121-dc66171d5199}</Project>
       <Name>Gxd.Domain</Name>

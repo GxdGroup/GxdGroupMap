@@ -78,7 +78,7 @@ namespace Gxd.ApplicationServices
         /// <param name="modules">依赖配置</param>
         public static void RegisterMvc(Assembly mvcAssembly, params IModule[] modules)
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();    
             Container.RegisterMvc(mvcAssembly, builder => RegisterTypes(assemblies, builder), modules);
         }
     }

@@ -1,4 +1,8 @@
 ﻿using Autofac;
+using Gxd.Domain;
+using Gxd.Domain.DBContext;
+using Gxd.Domain.Repository;
+using Gxd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +21,8 @@ namespace Applications.Services
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>().InstancePerLifetimeScope();
+            //builder.RegisterType<RepositoryContext>().As<IRepositoryContext>().InstancePerLifetimeScope();
+            builder.RegisterType(typeof(Repository<Community>)).As(typeof(IRepository<Community>));
         }
     }
 }

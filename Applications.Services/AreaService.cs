@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Applications.Services
 {
-    public class AreaService : IAreaService
+    public class Area : IAreaService
     {
         public int Count()
         {
