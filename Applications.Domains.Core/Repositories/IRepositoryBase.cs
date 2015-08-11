@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Domain
 {
-    public interface IRepositoryBase<T> : IRepository<T> where T: class
+    public interface IRepositoryBase<TEntity> : IRepository<TEntity,int> where TEntity : EntityBase<int>
     {
     }
 }

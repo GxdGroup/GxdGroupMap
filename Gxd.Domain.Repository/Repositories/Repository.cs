@@ -10,7 +10,7 @@ using Gxd.Domain.DBContext;
 
 namespace Gxd.Domain.Repository
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : EntityBase<TKey>
     {
         protected IRepositoryContext Context;
         protected IDbConnection Conn;
@@ -21,47 +21,47 @@ namespace Gxd.Domain.Repository
             Conn = Context.Conn;
         }      
 
-        public List<T> Add(IList<T> modeList)
+        public List<TEntity> Add(IList<TEntity> modeList)
         {
             throw new NotImplementedException();
         }
 
-        public T Add(T model)
+        public TEntity Add(TEntity model)
         {
             throw new NotImplementedException();
         }
 
-        public T Find(int id)
+        public TEntity Find(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IList<T> Query(object sqlParas)
+        public IList<TEntity> Query(object sqlParas)
         {
             throw new NotImplementedException();
         }
 
-        public IList<T> Query(string sql, object sqlParas)
+        public IList<TEntity> Query(string sql, object sqlParas)
         {
-            return Conn.Query<T>(sql, sqlParas).ToList();
+            return Conn.Query<TEntity>(sql, sqlParas).ToList();
         }
 
-        public IList<T> Query(object sqlParas, int pageSize, int pageIndex)
-        {
-            throw new NotImplementedException();
-        }
-
-        public T QueryFirst(object sqlParas)
+        public IList<TEntity> Query(object sqlParas, int pageSize, int pageIndex)
         {
             throw new NotImplementedException();
         }
 
-        public T QueryFirst(string sql, object sqlParas)
+        public TEntity QueryFirst(object sqlParas)
         {
             throw new NotImplementedException();
         }
 
-        public void Remove(T model)
+        public TEntity QueryFirst(string sql, object sqlParas)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(TEntity model)
         {
             throw new NotImplementedException();
         }
@@ -71,12 +71,12 @@ namespace Gxd.Domain.Repository
             throw new NotImplementedException();
         }
 
-        public void Update(IList<T> modeList)
+        public void Update(IList<TEntity> modeList)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T model)
+        public void Update(TEntity model)
         {
             throw new NotImplementedException();
         }

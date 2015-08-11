@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConnFactory.cs" />
+    <Compile Include="Dapper\DBConnFactory.cs" />
     <Compile Include="DBContext\IRepositoryContext.cs" />
     <Compile Include="DBContext\RepositoryContext.cs" />
-    <Compile Include="DBHelper.cs" />
+    <Compile Include="Dapper\DBHelper.cs" />
+    <Compile Include="EntityBase.cs" />
     <Compile Include="IRepositories\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />

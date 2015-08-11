@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace Gxd.Domain
 {
-    public interface IRepository<T>: IDependency where T : class
+    public interface IRepository<TEntity,TKey>: IDependency where TEntity : EntityBase<TKey>
     {
-        T Add(T model);
-        List<T> Add(IList<T> modeList);
-        void Update(T model);
-        void Update(IList<T> modeList);
-        T Find(int id);
+        TEntity Add(TEntity model);
+        List<TEntity> Add(IList<TEntity> modeList);
+        void Update(TEntity model);
+        void Update(IList<TEntity> modeList);
+        TEntity Find(int id);
         void Remove(int id);
-        void Remove(T model);
-        T QueryFirst(object sqlParas);
-        T QueryFirst(string sql, object sqlParas);
-        IList<T> Query(object sqlParas);
-        IList<T> Query(string sql, object sqlParas);
-        IList<T> Query(object sqlParas, int pageSize, int pageIndex);
+        void Remove(TEntity model);
+        TEntity QueryFirst(object sqlParas);
+        TEntity QueryFirst(string sql, object sqlParas);
+        IList<TEntity> Query(object sqlParas);
+        IList<TEntity> Query(string sql, object sqlParas);
+        IList<TEntity> Query(object sqlParas, int pageSize, int pageIndex);
     }
 }
