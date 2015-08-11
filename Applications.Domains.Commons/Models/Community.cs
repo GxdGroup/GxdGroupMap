@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gxd.Models
+namespace Applications.Domains
 {
     public class Community
     {

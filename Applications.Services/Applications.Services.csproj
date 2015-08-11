@@ -76,14 +76,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AreaService.cs" />
     <Compile Include="Configs\IocConfig.cs" />
     <Compile Include="EntityServices\AreaService.cs" />
-    <Compile Include="IAreaService.cs" />
     <Compile Include="IEntityContracts\IAreaContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application.Datas.Dapper\Application.Datas.Dapper.csproj">
+      <Project>{a372fffa-2ee9-4533-9284-b3e135499d43}</Project>
+      <Name>Application.Datas.Dapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Applications.Domains.Commons\Applications.Domains.Commons.csproj">
+      <Project>{09414784-3f6e-4e80-b043-6d0c51f3caf1}</Project>
+      <Name>Applications.Domains.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Applications.Domains.Core\Applications.Domains.Core.csproj">
+      <Project>{b42f0080-c31c-4a3f-a439-99b43875397b}</Project>
+      <Name>Applications.Domains.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Applications.Infrastructure.Core\Applications.Infrastructure.Core.csproj">
+      <Project>{8711849e-3de6-49d1-8aac-6645ba4caaca}</Project>
+      <Name>Applications.Infrastructure.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gxd.Core\Gxd.Core.csproj">
       <Project>{0aa91899-fbc7-4f09-a307-36941c5fc02e}</Project>
       <Name>Gxd.Core</Name>

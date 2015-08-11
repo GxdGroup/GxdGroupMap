@@ -1,6 +1,6 @@
-﻿using Applications.Services;
+﻿using Applications.Domains;
+using Applications.Services;
 using Gxd.Domain;
-using Gxd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,8 +1,10 @@
-﻿using Autofac;
+﻿using Application.Datas.Dapper;
+using Application.Datas.Dapper.Repositories;
+using Applications.Domains;
+using Autofac;
 using Gxd.Domain;
 using Gxd.Domain.DBContext;
 using Gxd.Domain.Repository;
-using Gxd.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,8 +23,9 @@ namespace Applications.Services
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<RepositoryContext>().As<IRepositoryContext>().InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
+            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>().InstancePerLifetimeScope();
+            //builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
+            //builder.RegisterGeneric(typeof(RepositoryBase<>)).As(typeof(IRepositoryBase<>));
         }
     }
 }

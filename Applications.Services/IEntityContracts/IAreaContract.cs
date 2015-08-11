@@ -1,5 +1,5 @@
-﻿using Gxd.Core;
-using Gxd.Models;
+﻿using Applications.Domains;
+using Gxd.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Gxd.Domain.Infrastructure;
+using Gxd.Domain.DBContext;
 
 namespace Gxd.Domain.Repository
 {
@@ -14,9 +15,9 @@ namespace Gxd.Domain.Repository
         protected IRepositoryContext Context;
         protected IDbConnection Conn;
 
-        public Repository(IRepositoryContext context)
+        public Repository(IUnitOfWork context)
         {
-            Context = context;
+            Context = (RepositoryContext)context;
             Conn = Context.Conn;
         }      
 
