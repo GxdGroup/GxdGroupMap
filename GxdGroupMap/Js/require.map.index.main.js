@@ -12,19 +12,23 @@ require(['obmap'], function (obmap) {
     var map = $.obear.CreateBaiduMap($("#mapCanvas")[0]);
     //添加标注
     $.obear.AddMarker(map, 116.404, 39.915);
+    //批量添加点
+    $('#markbutton').click(function () {
+        $.obear.AddGroupMark(map);
+    });
     //添加自定义图标
     $('#picturebutton').click(function () {
         $.obear.AddPicture(map, "http://developer.baidu.com/map/jsdemo/img/fox.gif", 116.404, 39.915);
     });
     $("#searchbutton").click(function () { $.obear.Search(map, $("#searchaddress").val()); });
     //搜索自动填充功能
-    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+    var autoComplete = new BMap.Autocomplete(    //建立一个自动完成的对象
          {
              "input": "searchaddress",
              "location": map
          })
 
-    ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+    autoComplete.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
         var str = "";
         var _value = e.fromitem.value;
         var value = "";
