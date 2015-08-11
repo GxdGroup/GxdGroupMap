@@ -262,13 +262,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Applications.Domains.Commons\Applications.Domains.Commons.csproj">
+    <ProjectReference Include="..\Applications.Domains.Commons\Application.Domain.Common.csproj">
       <Project>{09414784-3f6e-4e80-b043-6d0c51f3caf1}</Project>
-      <Name>Applications.Domains.Commons</Name>
+      <Name>Application.Domain.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Applications.Services\Applications.Services.csproj">
+    <ProjectReference Include="..\Applications.Services\Application.Service.csproj">
       <Project>{0d1ec4f9-57db-47a0-9036-2e7e329025cf}</Project>
-      <Name>Applications.Services</Name>
+      <Name>Application.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gxd.ApplicationServices\Gxd.ApplicationServices.csproj">
       <Project>{3162fcab-0d57-42eb-a91d-d0cc99eb25ee}</Project>

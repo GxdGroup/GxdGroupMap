@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A372FFFA-2EE9-4533-9284-B3E135499D43}</ProjectGuid>
+    <ProjectGuid>{B42F0080-C31C-4A3F-A439-99B43875397B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Application.Datas.Dapper</RootNamespace>
-    <AssemblyName>Application.Datas.Dapper</AssemblyName>
+    <RootNamespace>Applications.Domain.Core</RootNamespace>
+    <AssemblyName>Applications.Domain.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,7 +31,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,35 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\CommunityRepository.cs" />
-    <Compile Include="Repositories\RepositoryBase.cs" />
+    <Compile Include="Repositories\IRepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Applications.Domains.Commons\Applications.Domains.Commons.csproj">
-      <Project>{09414784-3f6e-4e80-b043-6d0c51f3caf1}</Project>
-      <Name>Applications.Domains.Commons</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Applications.Domains.Core\Applications.Domains.Core.csproj">
-      <Project>{b42f0080-c31c-4a3f-a439-99b43875397b}</Project>
-      <Name>Applications.Domains.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Applications.Infrastructure.Core\Applications.Infrastructure.Core.csproj">
-      <Project>{8711849e-3de6-49d1-8aac-6645ba4caaca}</Project>
-      <Name>Applications.Infrastructure.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Gxd.Core\Gxd.Core.csproj">
       <Project>{0aa91899-fbc7-4f09-a307-36941c5fc02e}</Project>
       <Name>Gxd.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gxd.Domain.Infrastructure\Gxd.Domain.Infrastructure.csproj">
-      <Project>{af1bd5f5-93fe-414b-a797-82b1bbdfc50b}</Project>
-      <Name>Gxd.Domain.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gxd.Domain.Repository\Gxd.Domain.Repository.csproj">
-      <Project>{a9505963-6cb6-4858-af61-e160ad7b734a}</Project>
-      <Name>Gxd.Domain.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gxd.Domain\Gxd.Domain.csproj">
       <Project>{a610444d-b8db-42d5-a121-dc66171d5199}</Project>

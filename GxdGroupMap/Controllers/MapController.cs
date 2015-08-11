@@ -1,5 +1,5 @@
-﻿using Applications.Domains;
-using Applications.Services;
+﻿using Application.Domain;
+using Application.Service;
 using Gxd.Domain;
 using System;
 using System.Collections.Generic;

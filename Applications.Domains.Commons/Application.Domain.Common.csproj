@@ -7,8 +7,8 @@
     <ProjectGuid>{09414784-3F6E-4E80-B043-6D0C51F3CAF1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Applications.Domains.Commons</RootNamespace>
-    <AssemblyName>Applications.Domains.Commons</AssemblyName>
+    <RootNamespace>Application.Domain.Common</RootNamespace>
+    <AssemblyName>Application.Domain.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,9 +45,9 @@
     <Compile Include="Repositories\ICommunityRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Applications.Domains.Core\Applications.Domains.Core.csproj">
+    <ProjectReference Include="..\Applications.Domains.Core\Application.Domain.Core.csproj">
       <Project>{b42f0080-c31c-4a3f-a439-99b43875397b}</Project>
-      <Name>Applications.Domains.Core</Name>
+      <Name>Application.Domain.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gxd.Core\Gxd.Core.csproj">
       <Project>{0aa91899-fbc7-4f09-a307-36941c5fc02e}</Project>

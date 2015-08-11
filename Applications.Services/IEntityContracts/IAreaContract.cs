@@ -1,4 +1,4 @@
-﻿using Applications.Domains;
+﻿using Application.Domain;
 using Gxd.Core;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Applications.Services
+namespace Application.Service
 {
     public interface IAreaContract: IDependency
     {

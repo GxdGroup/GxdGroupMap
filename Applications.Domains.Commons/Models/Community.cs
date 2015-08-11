@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Applications.Domains
+namespace Application.Domain
 {
     public class Community
     {

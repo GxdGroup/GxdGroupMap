@@ -1,17 +1,9 @@
-﻿using Application.Datas.Dapper;
-using Application.Datas.Dapper.Repositories;
-using Applications.Domains;
+﻿using Application;
+using Application.Data.Dapper;
 using Autofac;
-using Gxd.Domain;
-using Gxd.Domain.DBContext;
-using Gxd.Domain.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Applications.Services
+
+namespace Application.Service
 {
     /// <summary>
     /// 应用程序Ioc配置
@@ -23,7 +15,7 @@ namespace Applications.Services
         /// </summary>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<DapperUnitOfWork>().As<IApplicationUnitOfWork>().InstancePerLifetimeScope();
             //builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
             //builder.RegisterGeneric(typeof(RepositoryBase<>)).As(typeof(IRepositoryBase<>));
         }

@@ -33,7 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D6985A3F-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gxd.Core", "Gxd.Core\Gxd.Core.csproj", "{0AA91899-FBC7-4F09-A307-36941C5FC02E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applications.Services", "Applications.Services\Applications.Services.csproj", "{0D1EC4F9-57DB-47A0-9036-2E7E329025CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Service", "Applications.Services\Application.Service.csproj", "{0D1EC4F9-57DB-47A0-9036-2E7E329025CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Presentation", "01-Presentation", "{A32C4984-A54C-4847-B6AF-3C6ECC7AB66B}"
 EndProject
@@ -45,15 +45,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gxd.Domain.Infrastructure",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Domains", "03-Domains", "{46DE243A-1910-4A82-9366-B9ED229DC266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applications.Domains.Core", "Applications.Domains.Core\Applications.Domains.Core.csproj", "{B42F0080-C31C-4A3F-A439-99B43875397B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Domain.Core", "Applications.Domains.Core\Application.Domain.Core.csproj", "{B42F0080-C31C-4A3F-A439-99B43875397B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applications.Domains.Commons", "Applications.Domains.Commons\Applications.Domains.Commons.csproj", "{09414784-3F6E-4E80-B043-6D0C51F3CAF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Domain.Common", "Applications.Domains.Commons\Application.Domain.Common.csproj", "{09414784-3F6E-4E80-B043-6D0C51F3CAF1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Infrastructure", "04-Infrastructure", "{5C57D082-D32F-4A9A-AB24-CE3192875AB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applications.Infrastructure.Core", "Applications.Infrastructure.Core\Applications.Infrastructure.Core.csproj", "{8711849E-3DE6-49D1-8AAC-6645BA4CAACA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Infrastructure.Core", "Applications.Infrastructure.Core\Application.Infrastructure.Core.csproj", "{8711849E-3DE6-49D1-8AAC-6645BA4CAACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Datas.Dapper", "Application.Datas.Dapper\Application.Datas.Dapper.csproj", "{A372FFFA-2EE9-4533-9284-B3E135499D43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Data.Dapper", "Application.Datas.Dapper\Application.Data.Dapper.csproj", "{A372FFFA-2EE9-4533-9284-B3E135499D43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

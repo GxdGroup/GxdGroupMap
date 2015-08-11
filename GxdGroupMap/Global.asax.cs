@@ -1,4 +1,4 @@
-﻿using Applications.Services;
+﻿using Application.Service;
 using Gxd.ApplicationServices;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Applications.Domains
+namespace Application.Domain
 {
     public interface IRepositoryBase<T> : IRepository<T> where T: class
     {
