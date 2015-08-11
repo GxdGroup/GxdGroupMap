@@ -22,7 +22,7 @@ namespace Applications.Services
         protected override void Load(ContainerBuilder builder)
         {
             //builder.RegisterType<RepositoryContext>().As<IRepositoryContext>().InstancePerLifetimeScope();
-            builder.RegisterType(typeof(Repository<Community>)).As(typeof(IRepository<Community>));
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>));
         }
     }
 }
