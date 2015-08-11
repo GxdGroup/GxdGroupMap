@@ -20,7 +20,7 @@ namespace Application.Test.Services
         {
             IApplicationUnitOfWork unitOfWork = new DapperUnitOfWork();
             ICommunityRepository communityReposity = new CommunityRepository(unitOfWork);
-             _areaContract=new AreaService(unitOfWork, communityReposity);            
+            _areaContract = new AreaService(unitOfWork, communityReposity);
         }
         [TestMethod]
         public void TestMethod1()
@@ -29,6 +29,13 @@ namespace Application.Test.Services
             string commandText = @"SELECT * FROM b_community where Id = @Id";
             var community = _areaContract.Communities(commandText, new { Id = Id });
             Assert.AreEqual(1, community.Count);
+        }
+        [TestMethod]
+        public void GetTEntityById()
+        {
+            int Id = 1;
+            var com = _areaContract.GetByKey(Id);
+            Assert.AreEqual("怡美家园", com.Name);
         }
     }
 }

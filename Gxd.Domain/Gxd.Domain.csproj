@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dapper\DapperContrib\SqlMapperExtensions.cs" />
     <Compile Include="Dapper\DBConnFactory.cs" />
     <Compile Include="DBContext\IRepositoryContext.cs" />
     <Compile Include="DBContext\RepositoryContext.cs" />

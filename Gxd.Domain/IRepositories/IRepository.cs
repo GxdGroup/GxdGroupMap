@@ -1,26 +1,48 @@
-﻿using Gxd.Core;
-using Gxd.Domain.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+using Gxd.Core;
 
 namespace Gxd.Domain
 {
+    /// <summary>
+    /// 实体仓储模型的数据基本操作
+    /// </summary>
+    /// <typeparam name="TEntity">实体类型</typeparam>
+    /// <typeparam name="TKey">主键类型</typeparam>
     public interface IRepository<TEntity,TKey>: IDependency where TEntity : EntityBase<TKey>
     {
+        #region 属性
+
+        #endregion
+
+        #region 方法
+        /// <summary>
+        /// 通过主键Id获取实体类信息
+        /// </summary>
+        /// <param name="id">实体主键</param>
+        /// <returns>符合主键的实体，不存在时返回null</returns>
+        TEntity Find(TKey id);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlParas"></param>
+        /// <returns></returns>
+        IList<TEntity> Query(object sqlParas);
         TEntity Add(TEntity model);
         List<TEntity> Add(IList<TEntity> modeList);
         void Update(TEntity model);
         void Update(IList<TEntity> modeList);
-        TEntity Find(int id);
+        
         void Remove(int id);
         void Remove(TEntity model);
         TEntity QueryFirst(object sqlParas);
         TEntity QueryFirst(string sql, object sqlParas);
-        IList<TEntity> Query(object sqlParas);
+
+        
         IList<TEntity> Query(string sql, object sqlParas);
         IList<TEntity> Query(object sqlParas, int pageSize, int pageIndex);
+        #endregion
+
     }
 }

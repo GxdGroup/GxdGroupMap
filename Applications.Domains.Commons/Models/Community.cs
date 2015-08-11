@@ -1,4 +1,5 @@
-﻿using Gxd.Domain;
+﻿using Dapper.Contrib.Extensions;
+using Gxd.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Domain
 {
+    [Table("b_community")]
     public class Community : EntityBase<int>
     {
         public string Name { get; set; }

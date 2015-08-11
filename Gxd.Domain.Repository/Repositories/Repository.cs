@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
+
 using Gxd.Domain.Infrastructure;
 using Gxd.Domain.DBContext;
+
+using Dapper;
+using Dapper.Contrib.Extensions;
 
 namespace Gxd.Domain.Repository
 {
@@ -19,8 +20,19 @@ namespace Gxd.Domain.Repository
         {
             Context = (RepositoryContext)context;
             Conn = Context.Conn;
-        }      
+        }
 
+        #region 方法
+
+        /// <summary>
+        /// 通过主键Id获取实体类信息
+        /// </summary>
+        /// <param name="id">实体主键</param>
+        /// <returns>符合主键的实体，不存在时返回null</returns>
+        public TEntity Find(TKey id)
+        {
+            return Conn.Get<TEntity>(id);
+        }
         public List<TEntity> Add(IList<TEntity> modeList)
         {
             throw new NotImplementedException();
@@ -31,10 +43,7 @@ namespace Gxd.Domain.Repository
             throw new NotImplementedException();
         }
 
-        public TEntity Find(int id)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public IList<TEntity> Query(object sqlParas)
         {
@@ -80,5 +89,6 @@ namespace Gxd.Domain.Repository
         {
             throw new NotImplementedException();
         }
+        #endregion
     }
 }
