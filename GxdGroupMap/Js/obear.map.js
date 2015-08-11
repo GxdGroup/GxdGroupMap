@@ -58,7 +58,8 @@
         map.addOverlay(marker2); //放置图标
     }
     obear.Search=function(map,array)
-    {                  
+    {
+        map.clearOverlays();
         var local = new BMap.LocalSearch(map, {
             renderOptions: { map: map }
         });
