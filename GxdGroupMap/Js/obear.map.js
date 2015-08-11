@@ -47,6 +47,34 @@
             map.addOverlay(marker);
             return new_point;
     };
+    obear.AddGroupMark = function (map) {
+        map.clearOverlays(); 
+        var pointdata = [[116.417854, 39.921988,   
+	"http://app.baidu.com/map/images/tiananmen.jpg","北京市东城区王府井大街88号乐天银泰百货八层"],
+					 [116.406605, 39.921585, "http://app.baidu.com/map/images/tiananmen.jpg", "地址：北京市东城区东华门大街"],
+					 [116.412222, 39.912345, "http://app.baidu.com/map/images/tiananmen.jpg", "地址：北京市东城区正义路甲5号"]
+        ];
+        var Opts = {
+            width: 500,     // 信息窗口宽度
+            height: 180,     // 信息窗口高度
+            //title: "信息窗口", // 信息窗口标题
+            enableMessage: true//设置允许信息窗发送短息
+        };
+        for (var i = 0; i < pointdata.length; i++) {
+            var marker = new BMap.Marker(new BMap.Point(pointdata[i][0], pointdata[i][1]));  // 创建标注
+            var message = pointdata[i][2];
+            var address = pointdata[i][3];
+            map.addOverlay(marker);               // 将标注添加到地图中
+            AddClickEvent(message, marker,address);
+        }
+        function AddClickEvent(message, marker, address) {
+            marker.addEventListener("click", function (e) {
+                var Point = new BMap.Point(e.target.getPosition().lng, e.target.getPosition().lat);
+                var infoWindow = new BMap.InfoWindow("<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='" + message + "' width='250' height='104' title='天安门'/>" + "地址：" + address, Opts);
+                map.openInfoWindow(infoWindow, Point);
+            })
+        };
+    }
     obear.AddPicture = function (map,picture,x,y)
     {
         map.clearOverlays();
