@@ -35,5 +35,10 @@ namespace Application.Service
         {
             return _areaRepository.Query(sql, par);
         }
+
+        public long Add(Community model)
+        {
+            return _areaRepository.Add(model);
+        }
     }
 }

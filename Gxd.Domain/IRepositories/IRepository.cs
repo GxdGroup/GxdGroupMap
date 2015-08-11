@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using Gxd.Core;
+using System.Data;
 
 namespace Gxd.Domain
 {
@@ -24,12 +25,18 @@ namespace Gxd.Domain
         TEntity Find(TKey id);
 
         /// <summary>
-        /// 
+        /// 通过sql和参数获取实体信息列表
         /// </summary>
-        /// <param name="sqlParas"></param>
+        /// <param name="sql">sql语句</param>
+        /// <param name="param">匿名参数列表</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">缓冲</param>
+        /// <param name="commandTimeout">过期时间</param>
+        /// <param name="commandType">执行类型</param>
         /// <returns></returns>
-        IList<TEntity> Query(object sqlParas);
-        TEntity Add(TEntity model);
+        IList<TEntity> Query(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null);
+
+        long Add(TEntity model);
         List<TEntity> Add(IList<TEntity> modeList);
         void Update(TEntity model);
         void Update(IList<TEntity> modeList);
@@ -40,7 +47,7 @@ namespace Gxd.Domain
         TEntity QueryFirst(string sql, object sqlParas);
 
         
-        IList<TEntity> Query(string sql, object sqlParas);
+        
         IList<TEntity> Query(object sqlParas, int pageSize, int pageIndex);
         #endregion
 

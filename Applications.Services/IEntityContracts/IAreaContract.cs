@@ -17,5 +17,6 @@ namespace Application.Service
         /// <returns>符合主键的实体，不存在时返回null</returns>
         Community GetByKey(int id);
         IList<Community> Communities(string sql, object par);
+        long Add(Community model);
     }
 }

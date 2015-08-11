@@ -23,7 +23,7 @@ namespace GxdGroupMap.Controllers
             int Id = 1;
             string commandText = @"SELECT * FROM b_community where Id = @Id";
             //Community comlists = DbHelper.QueryOne<Community>(commandText, new { Id = Id }, null, true, null, System.Data.CommandType.Text);
-            IList<Community> _comlists = sAreaContract.Communities(commandText, new { Id = Id });
+            IEnumerable<Community> _comlists = sAreaContract.Communities(commandText, new { Id = Id });
 
             return View();
         }
