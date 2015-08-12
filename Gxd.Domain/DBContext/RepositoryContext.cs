@@ -33,6 +33,7 @@ namespace Gxd.Domain.DBContext
             DbProviderFactory dbfactory = DbProviderFactories.GetFactory(this._connectionSeting.ProviderName);
             this.Conn = dbfactory.CreateConnection();
             if (Conn != null) this.Conn.ConnectionString = this._connectionSeting.ConnectionString;
+            Conn.Open();
         }
 
         private bool _committed = true;

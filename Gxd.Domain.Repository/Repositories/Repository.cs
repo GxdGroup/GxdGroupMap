@@ -15,9 +15,10 @@ namespace Gxd.Domain.Repository
     {
         protected IRepositoryContext Context;
         protected IDbConnection Conn;
-
+        private readonly IUnitOfWork _unitOfWork;
         public Repository(IUnitOfWork context)
         {
+            _unitOfWork = context;
             Context = (RepositoryContext)context;
             Conn = Context.Conn;
         }
@@ -33,15 +34,38 @@ namespace Gxd.Domain.Repository
         {
             return Conn.Get<TEntity>(id);
         }
+
+        ///<summary>
+        /// 通过sql和参数获取实体信息列表
+        /// </summary>
+        /// <param name="sql">sql语句</param>
+        /// <param name="param">匿名参数列表</param>
+        /// <param name="transaction">事务</param>
+        /// <param name="buffered">缓冲</param>
+        /// <param name="commandTimeout">过期时间</param>
+        /// <param name="commandType">执行类型</param>
+        /// <returns></returns>
+        public IList<TEntity> Query(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return Conn.Query<TEntity>(sql, param, transaction, buffered, commandTimeout, commandType).ToList();
+        }
+
+        /// <summary>
+        /// 增
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns></returns>
+        public long Add(TEntity model)
+        {
+            return Conn.Insert<TEntity>(model);
+        }
+
         public List<TEntity> Add(IList<TEntity> modeList)
         {
             throw new NotImplementedException();
         }
 
-        public TEntity Add(TEntity model)
-        {
-            throw new NotImplementedException();
-        }
+
 
 
 

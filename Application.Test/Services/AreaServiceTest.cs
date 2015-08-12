@@ -5,6 +5,7 @@ using Gxd.ApplicationServices;
 using Application.Domain;
 using Application.Data.Dapper;
 using Application.Data.Dapper.Repositories;
+using System.Collections.Generic;
 
 namespace Application.Test.Services
 {
@@ -36,6 +37,25 @@ namespace Application.Test.Services
             int Id = 1;
             var com = _areaContract.GetByKey(Id);
             Assert.AreEqual("怡美家园", com.Name);
+        }
+        [TestMethod]
+        public void QueryBySql()
+        {
+            int Id = 1;
+            string commandText = @"SELECT * FROM b_community where Id = @Id";
+            IList<Community> _comlists = _areaContract.Communities(commandText, new { Id = Id });
+            Assert.AreEqual(1, _comlists.Count);
+        }
+        [TestMethod]
+        public void Add()
+        {
+            Community com = new Community();
+            com.Lng = 112.546;
+            com.Lat = 38.789;
+            com.Name = "环球中心";
+
+            long id = _areaContract.Add(com);
+            Assert.AreNotEqual(0, id);
         }
     }
 }
