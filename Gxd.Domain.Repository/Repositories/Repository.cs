@@ -15,9 +15,10 @@ namespace Gxd.Domain.Repository
     {
         protected IRepositoryContext Context;
         protected IDbConnection Conn;
-
+        private readonly IUnitOfWork _unitOfWork;
         public Repository(IUnitOfWork context)
         {
+            _unitOfWork = context;
             Context = (RepositoryContext)context;
             Conn = Context.Conn;
         }
@@ -64,7 +65,7 @@ namespace Gxd.Domain.Repository
             throw new NotImplementedException();
         }
 
-        
+
 
 
 
