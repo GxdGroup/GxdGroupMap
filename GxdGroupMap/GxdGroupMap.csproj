@@ -199,6 +199,7 @@
     <Content Include="Js\obear.js" />
     <Content Include="Js\obear.map.js" />
     <Content Include="Js\require.js" />
+    <Content Include="Js\require.map.default.main.js" />
     <Content Include="Js\require.map.index.main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -249,6 +250,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
+    <Content Include="Views\Map\Default.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,6 +295,10 @@
     <ProjectReference Include="..\Gxd.Models\Gxd.Models.csproj">
       <Project>{a53724b6-cda5-4167-a2df-ed850e4bdf97}</Project>
       <Name>Gxd.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gxd.Web\Gxd.Web.csproj">
+      <Project>{54182a5d-5ff6-4c68-9397-92c87f733cfb}</Project>
+      <Name>Gxd.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

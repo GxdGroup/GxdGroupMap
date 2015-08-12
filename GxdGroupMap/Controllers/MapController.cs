@@ -1,6 +1,8 @@
 ﻿using Application.Domain;
+using Application.Domain.Common.Dto;
 using Application.Service;
 using Gxd.Domain;
+using Gxd.Web.Mvc.Binders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace GxdGroupMap.Controllers
         }
         // GET: Map
         public ActionResult Index()
-        {            
+        {
             //int Id = 1;
             //string commandText = @"SELECT * FROM b_community where Id = @Id";            
             //IEnumerable<Community> _comlists = sAreaContract.Communities(commandText, new { Id = Id });
@@ -40,6 +42,23 @@ namespace GxdGroupMap.Controllers
             return View();
         }
 
+        public ActionResult Default()
+        {
+            return View();
+        }
 
+        /// <summary>
+        /// 各分类指数
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
+        {
+            string commandText = @"SELECT * FROM b_community";
+            IList<Community> comList = sAreaContract.Communities(commandText, null);
+
+            return Json(comList);
+        }
     }
 }
