@@ -47,16 +47,16 @@
             map.addOverlay(marker);
             return new_point;
     };
+    //批量添加点
     obear.AddGroupMark = function (map) {
         map.clearOverlays(); 
-        var pointdata = [[116.417854, 39.921988,   
-	"http://app.baidu.com/map/images/tiananmen.jpg","北京市东城区王府井大街88号乐天银泰百货八层"],
-					 [116.406605, 39.921585, "http://app.baidu.com/map/images/tiananmen.jpg", "地址：北京市东城区东华门大街"],
-					 [116.412222, 39.912345, "http://app.baidu.com/map/images/tiananmen.jpg", "地址：北京市东城区正义路甲5号"]
+        var pointdata = [[116.417854, 39.921988,"http://app.baidu.com/map/images/tiananmen.jpg","北京市东城区王府井大街88号乐天银泰百货八层"],
+					 [116.406605, 39.921585, "http://app.baidu.com/map/images/tiananmen.jpg", "北京市东城区东华门大街"],
+					 [116.412222, 39.912345, "http://app.baidu.com/map/images/tiananmen.jpg", "北京市东城区正义路甲5号"]
         ];
         var Opts = {
-            width: 500,     // 信息窗口宽度
-            height: 180,     // 信息窗口高度
+            width: 465,     // 信息窗口宽度
+            height: 140,     // 信息窗口高度
             //title: "信息窗口", // 信息窗口标题
             enableMessage: true//设置允许信息窗发送短息
         };
@@ -70,11 +70,12 @@
         function AddClickEvent(message, marker, address) {
             marker.addEventListener("click", function (e) {
                 var Point = new BMap.Point(e.target.getPosition().lng, e.target.getPosition().lat);
-                var infoWindow = new BMap.InfoWindow("<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='" + message + "' width='250' height='104' title='天安门'/>" + "地址：" + address, Opts);
+                var infoWindow = new BMap.InfoWindow("<p style='margin:0;color:blue'>天安门</p>" + "<table width='450' cellspacing='0' cellpadding='0'><tbody><tr><td   rowspan='2' align='center' valign='middle' width='153'><img src=" + message + " height='89' width='131'></td> <td  height='22' width='260'>" + "天安门" + "</td></tr><tr><td height='22'>" + address + "</td></tr></tbody></table>", Opts);
                 map.openInfoWindow(infoWindow, Point);
             })
         };
     }
+
     obear.AddPicture = function (map,picture,x,y)
     {
         map.clearOverlays();
