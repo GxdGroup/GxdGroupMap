@@ -3,11 +3,13 @@ using Autofac.Core;
 using Gxd.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 using Container = Gxd.DI.Autofac.Container;
 namespace Gxd.ApplicationServices
 {
@@ -78,7 +80,11 @@ namespace Gxd.ApplicationServices
         /// <param name="modules">依赖配置</param>
         public static void RegisterMvc(Assembly mvcAssembly, params IModule[] modules)
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();    
+            var assemblies = new DirectoryInfo(
+                   HttpContext.Current.Server.MapPath("~/bin/"))
+             .GetFiles("*.dll")
+             .Select(r => Assembly.LoadFrom(r.FullName)).ToArray();
+            //var assemblies = AppDomain.CurrentDomain.GetAssemblies();    
             Container.RegisterMvc(mvcAssembly, builder => RegisterTypes(assemblies, builder), modules);
         }
     }
