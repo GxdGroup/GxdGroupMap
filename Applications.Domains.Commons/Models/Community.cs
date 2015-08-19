@@ -14,5 +14,8 @@ namespace Application.Domain
         public string Name { get; set; }
         public double Lng { get; set; }
         public double Lat { get; set; }
+        public string Picurl { get; set; }
+        public string Address { get; set; }
+
     }
 }

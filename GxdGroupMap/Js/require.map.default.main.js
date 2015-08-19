@@ -18,6 +18,7 @@ require(['obmap'], function (obmap) {
 
         for (var i = 0; i < data.length; i++)
         {
+            $.obear.AddMarker(map, data[i].Lng, data[i].Lat);
             alert(data[i].Name);
         }
        
