@@ -37,8 +37,8 @@
                     obear.getPointarray(map, marker, point);
                     map.removeEventListener("click", addclick);
                 }
-            });           
-                     
+            });
+
             return map;
         }
     };
@@ -78,7 +78,7 @@
                 }
             }
         });
-        
+
     };
     //批量添加点
     //obear.AddGroupMark = function (map) {
@@ -112,13 +112,37 @@
     //        })
     //    };
     //};
-    obear.AddPicture = function (map, picture, x, y) {
-        //map.clearOverlays();
+    obear.AddClickEvent = function (map,picture, marker,message) {
+        var Opts = {
+                    width: 465,     // 信息窗口宽度
+                    height: 140,     // 信息窗口高度
+                    //title: "信息窗口", // 信息窗口标题
+                    enableMessage: true//设置允许信息窗发送短息
+                };
+        var smarker = marker;
+        smarker.addEventListener("click", function (e) {
+            var Point = new BMap.Point(e.target.getPosition().lng, e.target.getPosition().lat);
+            var infoWindow = new BMap.InfoWindow("<p style='margin:0;color:blue'>天安门</p>" + "<table width='450' cellspacing='0' cellpadding='0'><tbody><tr><td   rowspan='2' align='center' valign='middle' width='153'><img src=" + picture + " height='89' width='131'></td> <td  height='22' width='260'>" + "距离天安门" + "</td></tr><tr><td height='22'>" +message+ "米</td></tr></tbody></table>", Opts);
+            map.openInfoWindow(infoWindow, Point);
+        })
+    };
+    obear.AddLine = function (map, picture, x, y, startpoint,length) {
+        var spoint = startpoint;
+        var slength = length;
         var sAddress = picture;
         var point = new BMap.Point(x, y);
         var sIcon = new BMap.Icon(sAddress, new BMap.Size(36, 36));
         var marker2 = new BMap.Marker(point, { icon: sIcon });  // 创建标注
-        marker2.enableDragging();
+        obear.AddClickEvent(map,sAddress, marker2,length);
+        map.addOverlay(marker2); //放置图标
+    };
+    obear.AddPicture = function (map, picture, x, y) {
+        //map.clearOverlays();       
+        var sAddress = picture;
+        var point = new BMap.Point(x, y);
+        var sIcon = new BMap.Icon(sAddress, new BMap.Size(36, 36));
+        var marker2 = new BMap.Marker(point, { icon: sIcon });  // 创建标注
+        obear.AddClickEvent(sAddress, marker2);
         map.addOverlay(marker2); //放置图标
     };
     obear.Search = function (map, array) {
@@ -161,7 +185,7 @@
                 var marker = new BMap.Marker(pointarray[i]);
                 map.addOverlay(marker);
                 var polyline = new BMap.Polyline([
-		(116.404, 39.915), pointarray[i]], { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
+        (116.404, 39.915), pointarray[i]], { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
                 map.addOverlay(polyline);
             }
         }
