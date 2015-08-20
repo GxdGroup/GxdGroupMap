@@ -107,10 +107,10 @@
     //    };
     //};
     obear.AddPicture = function (map, picture, x, y) {
-        map.clearOverlays();
+        //map.clearOverlays();
         var sAddress = picture;
         var point = new BMap.Point(x, y);
-        var sIcon = new BMap.Icon(sAddress, new BMap.Size(300, 157));
+        var sIcon = new BMap.Icon(sAddress, new BMap.Size(36, 36));
         var marker2 = new BMap.Marker(point, { icon: sIcon });  // 创建标注
         marker2.enableDragging();
         map.addOverlay(marker2); //放置图标
