@@ -9,6 +9,7 @@
 require(['obmap'], function (obmap) {
     //创建一个地图
     var map = $.obear.CreateBaiduMap($("#mapCanvas")[0]);
+    map.anchorBL{ display:none;};
     //添加标注
     $.obear.AddMarker(map, 116.404, 39.915);
 
