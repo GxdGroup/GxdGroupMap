@@ -13,11 +13,11 @@ namespace GxdGroupMap.Controllers
 {
     public class MapController : Controller
     {
-        //private readonly IAreaContract sAreaContract;
-        //public MapController(IAreaContract pAreaContract)
-        //{
-        //    sAreaContract = pAreaContract;
-        //}
+        private readonly IAreaContract sAreaContract;
+        public MapController(IAreaContract pAreaContract)
+        {
+            sAreaContract = pAreaContract;
+        }
         // GET: Map
         public ActionResult Index()
         {
