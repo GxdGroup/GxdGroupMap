@@ -13,11 +13,11 @@ namespace GxdGroupMap.Controllers
 {
     public class MapController : Controller
     {
-        private readonly IAreaContract sAreaContract;
-        public MapController(IAreaContract pAreaContract)
-        {
-            sAreaContract = pAreaContract;
-        }
+        //private readonly IAreaContract sAreaContract;
+        //public MapController(IAreaContract pAreaContract)
+        //{
+        //    sAreaContract = pAreaContract;
+        //}
         // GET: Map
         public ActionResult Index()
         {
@@ -52,12 +52,12 @@ namespace GxdGroupMap.Controllers
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
-        {            
-            string commandText = @"SELECT * FROM b_community";
-            IList<Community> comList = sAreaContract.Communities(commandText, null);
-            return Json(comList);
-        }
+        //[HttpPost]
+        //public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
+        //{            
+        //    string commandText = @"SELECT * FROM b_community";
+        //    IList<Community> comList = sAreaContract.Communities(commandText, null);
+        //    return Json(comList);
+        //}
     }
 }
