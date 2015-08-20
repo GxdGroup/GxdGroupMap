@@ -128,4 +128,42 @@
         });
         local.search(array);
     }
+    //添加绘图工具
+    obear.AddDrawingManager = function (map) {
+        var styleOptions = {
+            strokeColor: "blue",    //边线颜色。
+            fillColor: "blue",      //填充颜色。当参数为空时，圆形将没有填充效果。
+            strokeWeight: 3,       //边线的宽度，以像素为单位。
+            strokeOpacity: 0.8,	   //边线透明度，取值范围0 - 1。
+            fillOpacity: 0.6,      //填充的透明度，取值范围0 - 1。
+            strokeStyle: 'solid' //边线的样式，solid或dashed。
+        }
+        var pointarray = [];
+        pointarray.push(new BMap.Point(116.399, 39.910));
+        pointarray.push(new BMap.Point(116.405, 39.920));
+        pointarray.push(new BMap.Point(116.423493, 39.907445));
+        //实例化鼠标绘制工具
+        var drawingManager = new BMapLib.DrawingManager(map, {
+            isOpen: false, //是否开启绘制模式
+            enableDrawingTool: true, //是否显示工具栏
+            drawingToolOptions: {
+                anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                offset: new BMap.Size(5, 5), //偏离值
+            },
+            circleOptions: styleOptions, //圆的样式
+            polylineOptions: styleOptions, //线的样式
+            polygonOptions: styleOptions, //多边形的样式
+            rectangleOptions: styleOptions //矩形的样式
+        });
+        drawingManager.addEventListener('overlaycomplete', Getpoint);
+        function Getpoint(e) {
+            for (var i = 0; i < pointarray.length; i++) {
+                var marker = new BMap.Marker(pointarray[i]);
+                map.addOverlay(marker);
+                var polyline = new BMap.Polyline([
+		(116.404, 39.915), pointarray[i]], { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
+                map.addOverlay(polyline);
+            }
+        }
+    }
 });
