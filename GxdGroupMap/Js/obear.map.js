@@ -48,6 +48,12 @@
         var baiduMap = new BaiduMap(element, options);
         return baiduMap.create();
     };
+    //添加折线
+    obear.AddPolyline = function (map, array) {
+        var polyline = new BMap.Polyline(array,
+                                        { strokeColor: "red", strokeWeight: 2, strokeOpacity: 0.5 });
+        map.addOverlay(polyline);
+    };
     obear.AddMarker = function (map, x, y) {
         //map.clearOverlays();
         var new_point = new BMap.Point(x, y);
