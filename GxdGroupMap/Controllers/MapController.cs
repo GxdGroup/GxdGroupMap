@@ -52,12 +52,12 @@ namespace GxdGroupMap.Controllers
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
-        {            
-            string commandText = @"SELECT * FROM b_community";
-            IList<Community> comList = sAreaContract.Communities(commandText, null);
-            return Json(comList);
-        }
+        //[HttpPost]
+        //public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
+        //{            
+        //    string commandText = @"SELECT * FROM b_community";
+        //    IList<Community> comList = sAreaContract.Communities(commandText, null);
+        //    return Json(comList);
+        //}
     }
 }
