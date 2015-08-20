@@ -10,7 +10,6 @@
 require(['obmap'], function (obmap) {
     //创建一个地图
     var map = $.obear.CreateBaiduMap($("#mapCanvas")[0]);
-
     //添加标注
     $.obear.AddMarker(map, 116.404, 39.915);
     //批量添加点
@@ -21,10 +20,7 @@ require(['obmap'], function (obmap) {
     $('#picturebutton').click(function () {
         $.obear.AddPicture(map, "http://developer.baidu.com/map/jsdemo/img/fox.gif", 116.404, 39.915);
     });
-    //添加查询功能
     $("#searchbutton").click(function () { $.obear.Search(map, $("#searchaddress").val()); });
-    //添加绘图工具
-    $("#drawingmanagerbutton").click(function(){$.obear.AddDrawingManager(map)});
     //搜索自动填充功能
     var autoComplete = new BMap.Autocomplete(    //建立一个自动完成的对象
          {
