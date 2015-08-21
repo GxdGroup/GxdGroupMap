@@ -63,5 +63,11 @@ namespace GxdGroupMap.Controllers
         //    IList<Community> comList = sAreaContract.Communities(commandText, null);
         //    return Json(comList);
         //}
+        public ActionResult QueryInterestpoint([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
+        {
+            string commandText =string.Format("SELECT * FROM b_interestpoint where Type='{0}'", models.Type);
+            IList<Interestpoint> comList = sInterestpointContract.Interestpoints(commandText, null);
+            return Json(comList);
+        }
     }
 }

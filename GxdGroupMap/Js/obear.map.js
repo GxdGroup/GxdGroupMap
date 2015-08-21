@@ -112,28 +112,28 @@
     //        })
     //    };
     //};
-    obear.AddClickEvent = function (map,picture, marker,message) {
+    obear.AddClickEvent = function (map, picture, marker, message) {
         var Opts = {
-                    width: 350,     // 信息窗口宽度
-                    height: 100,     // 信息窗口高度
-                    //title: "信息窗口", // 信息窗口标题
-                    enableMessage: true//设置允许信息窗发送短息
-                };
+            width: 350,     // 信息窗口宽度
+            height: 100,     // 信息窗口高度
+            //title: "信息窗口", // 信息窗口标题
+            enableMessage: true//设置允许信息窗发送短息
+        };
         var smarker = marker;
         smarker.addEventListener("click", function (e) {
             var Point = new BMap.Point(e.target.getPosition().lng, e.target.getPosition().lat);
-            var infoWindow = new BMap.InfoWindow("<p style='margin:0;color:blue'>天安门</p>" + "<table width='450' cellspacing='0' cellpadding='0'><tbody><tr><td   rowspan='2' align='center' valign='middle' width='153'><img src=" + picture + " height='89' width='131'></td> <td  height='22' width='260'>" + "距离天安门" + "</td></tr><tr><td height='22'>" +message+ "米</td></tr></tbody></table>", Opts);
+            var infoWindow = new BMap.InfoWindow("<p style='margin:0;color:blue'>天安门</p>" + "<table width='450' cellspacing='0' cellpadding='0'><tbody><tr><td   rowspan='2' align='center' valign='middle' width='153'><img src=" + picture + " height='89' width='131'></td> <td  height='22' width='260'>" + "距离天安门" + "</td></tr><tr><td height='22'>" + message + "米</td></tr></tbody></table>", Opts);
             map.openInfoWindow(infoWindow, Point);
         })
     };
-    obear.AddLine = function (map, picture, x, y, startpoint,length) {
+    obear.AddLine = function (map, picture, x, y, startpoint, length) {
         var spoint = startpoint;
         var slength = length;
         var sAddress = picture;
         var point = new BMap.Point(x, y);
         var sIcon = new BMap.Icon(sAddress, new BMap.Size(36, 36));
         var marker2 = new BMap.Marker(point, { icon: sIcon });  // 创建标注
-        obear.AddClickEvent(map,sAddress, marker2,length);
+        obear.AddClickEvent(map, sAddress, marker2, length);
         map.addOverlay(marker2); //放置图标
     };
     obear.AddPicture = function (map, picture, x, y) {
@@ -189,5 +189,24 @@
                 map.addOverlay(polyline);
             }
         }
+    }
+    //数据库提取数据
+    obear.GetInterestpoint = function (map, type) {
+        var model = {};
+        var startpoint = new BMap.Point(116.404, 39.915);
+        for (var i = 0; i < type.length; i++) {
+            model.Type = type[i];
+            $.post("/Map/QueryInterestpoint", { models: JSON.stringify(model) }, function (data) {
+                for (var j = 0; j < data.length; j++) {
+                    var s = j;
+                    setTimeout(Interestpoint(s, data), (s * 1000 + 6000))
+                }
+            });
+        }
+        function Interestpoint(s, data) {
+            $.obear.AddLine(map, "../../image/icon/market.png", data[s].Lng, data[s].Lat, startpoint, "100");
+            $.obear.AddPolyline(map, [startpoint, new BMap.Point(data[s].Lng, data[s].Lat)], "blue")
+        }
+
     }
 });

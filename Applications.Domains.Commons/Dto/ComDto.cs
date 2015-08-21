@@ -9,5 +9,6 @@ namespace Application.Domain.Common.Dto
     public class ComDto
     {
         public int Count { get; set; }
+        public string Type { get; set; }
     }
 }
