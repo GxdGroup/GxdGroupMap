@@ -207,6 +207,5 @@
             $.obear.AddLine(map, "../../image/icon/market.png", data[s].Lng, data[s].Lat, startpoint, "100");
             $.obear.AddPolyline(map, [startpoint, new BMap.Point(data[s].Lng, data[s].Lat)], "blue")
         }
-
     }
 });
