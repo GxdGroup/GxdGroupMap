@@ -49,9 +49,9 @@
         return baiduMap.create();
     };
     //添加折线
-    obear.AddPolyline = function (map, array) {
-        var polyline = new BMap.Polyline(array,
-                                        { strokeColor: "red", strokeWeight: 2, strokeOpacity: 0.5 });
+    obear.AddPolyline = function (map, array, color) {
+        var scolor = color;
+        var polyline = new BMap.Polyline(array, { strokeColor: scolor, strokeWeight: 2, strokeOpacity: 0.5 });
         map.addOverlay(polyline);
     };
     obear.AddMarker = function (map, x, y) {
@@ -114,8 +114,8 @@
     //};
     obear.AddClickEvent = function (map,picture, marker,message) {
         var Opts = {
-                    width: 465,     // 信息窗口宽度
-                    height: 140,     // 信息窗口高度
+                    width: 350,     // 信息窗口宽度
+                    height: 100,     // 信息窗口高度
                     //title: "信息窗口", // 信息窗口标题
                     enableMessage: true//设置允许信息窗发送短息
                 };
