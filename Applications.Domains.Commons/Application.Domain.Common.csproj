@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="Dto\ComDto.cs" />
     <Compile Include="Models\Community.cs" />
+    <Compile Include="Models\Interestpoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ICommunityRepository.cs" />
+    <Compile Include="Repositories\IInterestpointRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Applications.Domains.Core\Application.Domain.Core.csproj">

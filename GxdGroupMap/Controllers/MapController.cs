@@ -13,11 +13,13 @@ namespace GxdGroupMap.Controllers
 {
     public class MapController : Controller
     {
-        //private readonly IAreaContract sAreaContract;
-        //public MapController(IAreaContract pAreaContract)
-        //{
-        //    sAreaContract = pAreaContract;
-        //}
+        private readonly IAreaContract sAreaContract;
+        private readonly IInterestpointContract sInterestpointContract;
+        public MapController(IAreaContract pAreaContract, IInterestpointContract pInterestpointContract)
+        {
+            sAreaContract = pAreaContract;
+            sInterestpointContract = pInterestpointContract;
+        }
         // GET: Map
         public ActionResult Index()
         {
@@ -44,6 +46,8 @@ namespace GxdGroupMap.Controllers
 
         public ActionResult Default()
         {
+            string commandText = @"SELECT * FROM b_interestpoint";
+            sInterestpointContract.Interestpoints(commandText,null);
             return View();
         }
 
