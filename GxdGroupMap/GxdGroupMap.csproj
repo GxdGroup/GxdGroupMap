@@ -199,6 +199,14 @@
     <Content Include="Image\Icon\market.png" />
     <Content Include="Image\Icon\store.png" />
     <Content Include="Image\Icon\subway.png" />
+    <Content Include="JavaScript\app\require.map.baidumap.main.js" />
+    <Content Include="JavaScript\app\require.map.default.main.js" />
+    <Content Include="JavaScript\app\require.map.index.main.js" />
+    <Content Include="JavaScript\common.js" />
+    <Content Include="JavaScript\lib\jquery-2.1.4.js" />
+    <Content Include="JavaScript\lib\obear.js" />
+    <Content Include="JavaScript\lib\obear.map.js" />
+    <Content Include="JavaScript\lib\require.js" />
     <Content Include="Js\jquery-2.1.4.js" />
     <Content Include="Js\obear.js" />
     <Content Include="Js\obear.map.js" />
@@ -255,6 +263,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Map\Default.cshtml" />
+    <Content Include="Views\Shared\_LayNewOut.cshtml" />
+    <Content Include="Views\Map\BaiduMap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

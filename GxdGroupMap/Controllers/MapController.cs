@@ -69,5 +69,9 @@ namespace GxdGroupMap.Controllers
             IList<Interestpoint> comList = sInterestpointContract.Interestpoints(commandText, null);
             return Json(comList);
         }
+        public ActionResult BaiduMap()
+        {
+            return View();
+        }
     }
 }
