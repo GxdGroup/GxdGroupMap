@@ -191,19 +191,24 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\globle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\Icon\hospital.png" />
     <Content Include="Image\Icon\market.png" />
+    <Content Include="Image\Icon\search_ico.png" />
+    <Content Include="Image\Icon\search_ico_hover.png" />
     <Content Include="Image\Icon\store.png" />
     <Content Include="Image\Icon\subway.png" />
     <Content Include="JavaScript\app\require.map.baidumap.main.js" />
     <Content Include="JavaScript\app\require.map.default.main.js" />
     <Content Include="JavaScript\app\require.map.index.main.js" />
     <Content Include="JavaScript\common.js" />
+    <Content Include="JavaScript\lib\jquery-1.8.3.min.js" />
     <Content Include="JavaScript\lib\jquery-2.1.4.js" />
+    <Content Include="JavaScript\lib\jquery.select.js" />
     <Content Include="JavaScript\lib\obear.js" />
     <Content Include="JavaScript\lib\obear.map.js" />
     <Content Include="JavaScript\lib\require.js" />
