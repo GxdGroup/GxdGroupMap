@@ -51,9 +51,29 @@
     //添加折线
     obear.AddPolyline = function (map, array, color) {
         var scolor = color;
-        var polyline = new BMap.Polyline(array, { strokeColor: scolor, strokeWeight: 2, strokeOpacity: 0.5 });
+        var polyline = new BMap.Polyline(array, { strokeColor: scolor, strokeWeight: 2, strokeOpacity: 0.5 });        
         map.addOverlay(polyline);
+        polyline.addEventListener("mouseover", function(){alert()});
+        //显示距离
+        function ShowLength(map, polyline) {
+            alert();
+            var opts = {
+                position: polyline,    // 指定文本标注所在的地理位置
+                offset: new BMap.Size(30, -30)    //设置文本偏移量
+            }
+            var label = new BMap.Label("欢迎使用百度地图，这是一个简单的文本标注哦~", opts);  // 创建文本标注对象
+            label.setStyle({
+                color: "red",
+                fontSize: "12px",
+                height: "20px",
+                lineHeight: "20px",
+                fontFamily: "微软雅黑"
+            });
+            map.addOverlay(label);
+        }
+
     };
+    
     obear.AddMarker = function (map, x, y) {
         //map.clearOverlays();
         var new_point = new BMap.Point(x, y);
@@ -196,16 +216,38 @@
         var startpoint = new BMap.Point(116.404, 39.915);
         for (var i = 0; i < type.length; i++) {
             model.Type = type[i];
-            $.post("/Map/QueryInterestpoint", { models: JSON.stringify(model) }, function (data) {
+            $.post("/Map/QueryInterestpoint", { models: JSON.stringify(model)}, function (data) {
                 for (var j = 0; j < data.length; j++) {
                     var s = j;
-                    setTimeout(Interestpoint(s, data), (s * 1000 + 6000))
+                  setTimeout(Interestpoint(s, data, data[s].Type),1000);
                 }
             });
         }
-        function Interestpoint(s, data) {
-            $.obear.AddLine(map, "../../image/icon/market.png", data[s].Lng, data[s].Lat, startpoint, "100");
-            $.obear.AddPolyline(map, [startpoint, new BMap.Point(data[s].Lng, data[s].Lat)], "blue")
+        function Interestpoint(s, data, picturetype) {
+            var picturedocument = Picturetype(picturetype);
+            $.obear.AddLine(map, picturedocument, data[s].Lng, data[s].Lat, startpoint, "100");
+            $.obear.AddPolyline(map, [startpoint, new BMap.Point(data[s].Lng, data[s].Lat)], "blue");
+        }
+        function Picturetype(picturetype) {
+            var picturedocument;        
+              switch (picturetype) {
+                  case "hospital":
+                      picturedocument = "../../image/icon/hospital.png";
+                      return picturedocument;
+                      break;
+                  case "store":
+                      picturedocument = "../../image/icon/store.png";
+                      return picturedocument;
+                      break;
+                  case "subway":
+                      picturedocument = "../../image/icon/subway.png";
+                      return picturedocument;
+                      break;
+                  default:
+                      return "";
+                      break;
+
+            }
         }
     }
 });
