@@ -1,7 +1,7 @@
 ﻿require.config({
     baseUrl: '../JavaScript/lib',
     paths: {
-        jquery: 'jquery-2.1.4',
+        jquery: 'jquery-1.8.3.min',
         obear: 'obear',
         obmap: 'obear.map'
     }

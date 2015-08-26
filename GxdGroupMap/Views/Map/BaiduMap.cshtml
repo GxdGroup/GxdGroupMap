@@ -3,18 +3,7 @@
     Layout = "~/Views/Shared/_LayNewOut.cshtml";
 }
 @section self_css
-{
-    <style type="text/css">
-        html, body {
-            margin: 0;
-            height: 100%;
-        }
-
-        #mapCanvas {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+{   
 }
 @section require_js_module
 {
@@ -25,5 +14,8 @@
         });
     </script>
 }
+<div id="map_tools">
+    <div id="tool_city">北京</div>
+</div>
 <div id="mapCanvas"></div>
 
