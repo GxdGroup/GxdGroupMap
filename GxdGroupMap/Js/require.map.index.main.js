@@ -16,7 +16,7 @@ require(['obmap'], function (obmap) {
     $('#markbutton').click(function () {
         $.obear.AddGroupMark(map);
     });
-    //添加自定义图标
+-    //添加自定义图标
     $('#picturebutton').click(function () {
         $.obear.AddPicture(map, "http://developer.baidu.com/map/jsdemo/img/fox.gif", 116.404, 39.915);
     });
@@ -44,6 +44,20 @@ require(['obmap'], function (obmap) {
         str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
         G($("#searchResultPanel").id).innerHTML = str;
     });
+    //div测试
+    
+    $(".testbox").click(function () {
+        $("#black").animate({ height: "115px" });
+        $("#blue").animate({ height: "315px" });
+        map.addEventListener("click", change);
+        function change() {        
+            $("#black").animate({ height: "45px" });
+            $("#blue").animate({ height: "55px" });
+            map.removeEventListener("click", change); 
+        }
+        $("#moreinterestpointclick").click(function () { $("#moreinterestpoint").show(); })
+    });
+  
     //var myValue;
     //ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
     //    var _value = e.item.value;
