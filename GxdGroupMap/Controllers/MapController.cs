@@ -73,5 +73,9 @@ namespace GxdGroupMap.Controllers
         {
             return View();
         }
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }

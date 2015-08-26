@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\globle.css" />
+    <Content Include="Content\obear.toggle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -211,6 +212,7 @@
     <Content Include="JavaScript\lib\jquery.select.js" />
     <Content Include="JavaScript\lib\obear.js" />
     <Content Include="JavaScript\lib\obear.map.js" />
+    <Content Include="JavaScript\lib\obear.toggle.js" />
     <Content Include="JavaScript\lib\require.js" />
     <Content Include="Js\jquery-2.1.4.js" />
     <Content Include="Js\obear.js" />
@@ -270,6 +272,7 @@
     <Content Include="Views\Map\Default.cshtml" />
     <Content Include="Views\Shared\_LayNewOut.cshtml" />
     <Content Include="Views\Map\BaiduMap.cshtml" />
+    <Content Include="Views\Map\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

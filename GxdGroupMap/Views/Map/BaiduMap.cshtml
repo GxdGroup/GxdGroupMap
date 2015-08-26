@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_LayNewOut.cshtml";
 }
 @section self_css
-{   
+{
+    <link href="~/Content/obear.toggle.css" rel="stylesheet" />
 }
 @section require_js_module
 {
@@ -13,9 +14,26 @@
             require(["../../JavaScript/app/require.map.baidumap.main"]);
         });
     </script>
+    <script type="text/javascript">
+        $("#map_left_logo").click(function () {
+            $("#map_left").toggle();
+            if ($(this).text() == "<") {
+                $(this).text(">");
+                $(this).css("left", "0");
+            } else {
+                $(this).text("<");
+                $(this).css("left", "300px");
+            }
+        });
+    </script>
 }
+
 <div id="map_tools">
     <div id="tool_city">北京</div>
 </div>
 <div id="mapCanvas"></div>
+<div id="map_left"></div>
+<div id="map_left_logo">></div>
+
+
 
