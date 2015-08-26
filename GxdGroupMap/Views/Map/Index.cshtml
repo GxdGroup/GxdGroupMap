@@ -8,20 +8,35 @@
     <meta name="viewport" content="width=device-width" />
     <title>百度地图首页</title>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=mn4G2vQYgAYSwIy9HwVXTwU5"></script>
+
+      
+
 </head>
-<body>    
-    <div id="mapCanvas" style="height:500px; width:100%;"></div> 
+<body>
+    <div id="mapCanvas" style="height:500px; width:100%;"></div>
     <script data-main="../Js/require.map.index.main" src="../Js/require.js"></script>
     <div>
         <input id="picturebutton" type="button" value="添加图片" />
         <input id="markbutton" type="button" value="添加多个点" />
     </div>
     <div>
-        <p>输入名称: <input id="searchaddress" type="text" style="width:200px" />
-            <input id="searchbutton" type="button" value="搜索" /></p>
+        <p>
+            输入名称: <input id="searchaddress" type="text" style="width:400px" />
+            <input id="searchbutton" type="button" value="搜索" />
+        </p>
     </div>
-        <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:200px;height:auto; display:none;"></div>
-    <script type="text/javascript">        
-    </script>
+    <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:394px;height:auto; display:none;">            </div>
+     <div class="testbox" id="red" style="width:406px; height:35px;position:absolute;z-index:6;background:#F00;left:80px;top:580px">
+         <form>
+            查看周边： <input type="checkbox" name="type" value="hospital"> 医院
+             <input type="checkbox" name="type" value="subway"> 地铁
+             <input type="checkbox" name="type" value="store">  商城
+             <input type="button" id="submit" value="查询">
+             <a id="moreinterestpointclick" style="width:50px;height:27px;">更多</a>
+         </form>
+     </div>
+    <div class="testbox" id="black" style="width:406px;height:45px;position:absolute;z-index:5;background:#000;left:80px;top:580px"></div>
+    <div class="testbox" id="blue" style="width:406px; height:55px;position:absolute;z-index:4;background:#00F;left:80px;top:580px"></div>
+    <div id="moreinterestpoint" style="width:406px; height:350px;position:absolute;background:#C0C0C0;left:500px;top:580px;display:none;"></div>
 </body>
 </html>
