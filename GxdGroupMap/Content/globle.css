@@ -22,6 +22,7 @@ a:hover { color: #0E4470; text-decoration: none; }
 #h_bar_right a { font-size: 12px; }
 .h_top { position: relative; height: 76px; }
 
+#map_tools { background: #F5F5F5 none repeat scroll 0% 0%; filter: alpha(opacity:90); opacity: 0.9; border-bottom: 1px solid #DCDCDC; height: 34px; left: 0px; line-height: 36px; position: absolute; overflow: hidden; top: 0px; white-space: nowrap; width: 100%; z-index: 100; }
 #mapCanvas { height: 100%; width: 100%; }
 #logo { position: absolute; top: 20px; left: 10px; padding: 3px 0px 0px 9px; z-index: 10; }
 #logo a { font-size: 28px; }
@@ -38,4 +39,6 @@ a:hover { color: #0E4470; text-decoration: none; }
 .search .select_option li.hover { background: #BEBEBE; color: #fff; }
 .search input.inp_srh, .search input.btn_srh { border: none; background: none; height: 35px; line-height: 35px; float: left; }
 .search input.inp_srh { outline: none; width: 465px; }
-.search input.btn_srh { background:green; color: #FFF; font-family: "微软雅黑"; font-size: 15px; width: 60px; }
+.search input.btn_srh { background: green; color: #FFF; font-family: "微软雅黑"; font-size: 15px; width: 60px; }
+/*map_tools*/
+#tool_city { position: absolute; left: 200px; cursor: pointer; font-size: 12px; height: 33px; }
