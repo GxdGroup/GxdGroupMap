@@ -1,4 +1,5 @@
 ﻿require(['obmap'], function (obmap) {
+    var globlePoint;
     var map = $.obear.CreateBaiduMap($("#mapCanvas")[0], { level: 16 });                    //创建一个地图
 
     var styleOptions = {
@@ -30,7 +31,69 @@
     });
 
     drawingManager.addEventListener('overlaycomplete', function (e) {
-        //alert(1);
-        $.obear.getPointarray(map, e.overlay.getBounds());
+        var pointarray = $.obear.getPoints();
+        if (pointarray != null) {
+            for (var i = 0; i < pointarray.length; i++) {
+                var point = new BMap.Point(pointarray[i].Lng, pointarray[i].Lat)
+
+                if ($.obear.isPointInGraph(point, e.drawingMode, e.overlay)) {
+                    //$.obear.AddSelfMarker(map, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat), $.obear.Icon.Hospital);
+                    $.obear.AddMarker(map, point.lng, point.lat);
+                }
+            }
+        } else {
+            alert("当前视野范围内不存在点");
+        }
+    });
+
+    $("#tool_map_clear").click(function () {
+        map.clearOverlays();
+    });
+    $("#ckbHospital").change(function () {
+        if ($("#ckbHospital").prop("checked")) {
+            var pointArray = $.obear.QueryInterestpoint($("#ckbHospital").val());
+            for (var i = 0; i < pointArray.length; i++) {
+                $.obear.AddSelfMarker(map, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat), $.obear.Icon.Hospital);
+                var array = [globlePoint, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat)];
+                if (globlePoint) {
+                    $.obear.AddPolyline(map, array, "red");
+                }
+            }
+        } else {
+            map.clearOverlays();
+        }
+    });
+
+    $("#ckbSubway").change(function () {
+        if ($("#ckbSubway").prop("checked")) {
+            var pointArray = $.obear.QueryInterestpoint($("#ckbSubway").val());
+            for (var i = 0; i < pointArray.length; i++) {
+                $.obear.AddSelfMarker(map, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat), $.obear.Icon.Subway);
+                if (globlePoint) {
+                    $.obear.AddPolyline(map, [globlePoint, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat)], "green");
+                }
+            }
+        } else {
+            map.clearOverlays();
+        }
+    });
+    $("#ckbStore").change(function () {
+        if ($("#ckbStore").prop("checked")) {
+            var pointArray = $.obear.QueryInterestpoint($("#ckbStore").val());
+            for (var i = 0; i < pointArray.length; i++) {
+                $.obear.AddSelfMarker(map, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat), $.obear.Icon.Store);
+                if (globlePoint) {
+                    $.obear.AddPolyline(map, [globlePoint, new BMap.Point(pointArray[i].Lng, pointArray[i].Lat)], "yellow");
+                }
+            }
+        } else {
+            map.clearOverlays();
+        }
+    });
+    $("#btnSerach").click(function () {
+        var point = new BMap.Point(116.411296, 39.978437);
+        globlePoint = point;
+        map.panTo(point);
+        $.obear.AddSelfMarker(map, point, $.obear.Icon.House);
     });
 });

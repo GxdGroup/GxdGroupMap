@@ -12,6 +12,8 @@
     <!--加载鼠标绘制工具-->
     <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
     <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    <!--点是否在指定图形-->
+    <script src="~/JavaScript/lib/GeoUtils.js"></script>
     <script>
         require(["JavaScript/common"], function () {
             require(["../../JavaScript/app/require.map.baidumap.main"]);
@@ -34,22 +36,24 @@
 
 <div id="map_tools">
     <div id="tool_city">北京</div>
+    <div id="tool_map_clear">清空</div>
 </div>
 <div id="mapCanvas"></div>
 <div id="map_left">
     <div id="map_left_menu">
         <ul>
-            <li><a class="selected" href="#ani1">1</a></li>
+            <li><a class="selected" href="#ani1">兴趣</a></li>
             <li><a href="#ani2">2</a></li>
             <li><a href="#ani3">3</a></li>
             <li><a href="#ani4">4</a></li>
         </ul>
     </div>
     <div id="map_left_content">
-        <div id="" class="map_left_main_content"></div>
-        <div id="" class="map_left_main_content"></div>
-        <div id="" class="map_left_main_content"></div>
-        <div id="" class="map_left_main_content"></div>
+        <div id="" class="map_left_main_content">
+            <input type="checkbox" name="type" value="hospital" id="ckbHospital"> 医院
+            <input type="checkbox" name="type" value="subway" id="ckbSubway"> 地铁
+            <input type="checkbox" name="type" value="store" id="ckbStore">  商城
+        </div>
     </div>
 </div>
 <div id="map_left_logo">></div>

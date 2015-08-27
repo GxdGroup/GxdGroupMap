@@ -39,6 +39,7 @@ a:hover { color: #0E4470; text-decoration: none; }
 .search .select_option li.hover { background: #BEBEBE; color: #fff; }
 .search input.inp_srh, .search input.btn_srh { border: none; background: none; height: 35px; line-height: 35px; float: left; }
 .search input.inp_srh { outline: none; width: 465px; }
-.search input.btn_srh { background: green; color: #FFF; font-family: "微软雅黑"; font-size: 15px; width: 60px; }
+.search input.btn_srh { background: green; color: #FFF; font-family: "微软雅黑"; font-size: 15px; width: 60px; cursor:pointer; }
 /*map_tools*/
 #tool_city { position: absolute; left: 200px; cursor: pointer; font-size: 12px; height: 33px; }
+#tool_map_clear {position: absolute; right: 50px; cursor: pointer; font-size: 12px; height: 33px; }

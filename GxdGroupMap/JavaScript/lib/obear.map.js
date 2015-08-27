@@ -2,8 +2,8 @@
     var BaiduMap = function (ele, opt) {
         this.element = ele,
         this.defaults = {
-            lng: 116.404,
-            lat: 39.915,
+            lng: 116.411529,
+            lat: 39.971664,
             level: 15,
             scroll: true
         };
@@ -28,21 +28,39 @@
             map.addControl(top_left_navigation);
             map.addControl(mapType2);
             map.setCurrentCity("北京");
-            map.addEventListener("dblclick", function (e) {
-                map.clearOverlays();
-                marker = obear.AddMarker(map, e.point.lng, e.point.lat);
-                map.addEventListener("click", addclick);
-                function addclick(m) {
-                    var point = m.point;
-                    obear.getPointarray(map, marker, point);
-                    map.removeEventListener("click", addclick);
-                }
-            });
+            //map.addEventListener("dblclick", function (e) {
+            //    map.clearOverlays();
+            //    marker = obear.AddMarker(map, e.point.lng, e.point.lat);
+            //    map.addEventListener("click", addclick);
+            //    function addclick(m) {
+            //        var point = m.point;
+            //        obear.getPointarray(map, marker, point);
+            //        map.removeEventListener("click", addclick);
+            //    }
+            //});
 
             return map;
         }
     };
-
+    /*
+      定义地图中几种图形类型
+      2015-8-27 lwb
+    */
+    obear.Graph = {
+        Circle: "circle",
+        Rectangle: "rectangle",
+        Polygon: "polygon"
+    };
+    /*
+      定义图标类型
+      2015-8-27 lwb
+    */
+    obear.Icon = {
+        Subway: "../../image/icon/subway.png",
+        Hospital: "../../image/icon/hospital.png",
+        Store: "../../image/icon/store.png",
+        House: "../../image/icon/house.png"
+    };
     //创建一个百度地图
     obear.CreateBaiduMap = function (element, options) {
         var baiduMap = new BaiduMap(element, options);
@@ -53,7 +71,29 @@
         var scolor = color;
         var polyline = new BMap.Polyline(array, { strokeColor: scolor, strokeWeight: 2, strokeOpacity: 0.5 });
         map.addOverlay(polyline);
+
+        var point = new BMap.Point((array[0].lng + array[1].lng) / 2, (array[0].lat + array[1].lat) / 2)
+        var length = map.getDistance(array[0], array[1]).toFixed(2);
+        polyline.addEventListener("mouseover", function () {
+            var opts = {
+                position: point,
+                offset: new BMap.Size(0, 0)
+            }
+            var label = new BMap.Label(length + "m", opts);
+            label.setStyle({
+                color: "green",
+                fontSize: "10px",
+                height: "16px",
+                lineHeight: "16px",
+                fontFamily: "微软雅黑"
+            });
+            map.addOverlay(label);
+            polyline.addEventListener("mouseout", function () {
+                map.removeOverlay(label)
+            });
+        });
     };
+
     obear.AddMarker = function (map, x, y) {
         //map.clearOverlays();
         var new_point = new BMap.Point(x, y);
@@ -61,6 +101,16 @@
         map.addOverlay(marker);
         return marker;
     };
+    /*
+      添加自定义图标坐标点
+      2015-8-27 lwb
+    */
+    obear.AddSelfMarker = function (map, point, icon) {
+        var selfIcon = new BMap.Icon(icon, new BMap.Size(36, 36));
+        var selfMarker = new BMap.Marker(point, { icon: selfIcon });
+        map.addOverlay(selfMarker);
+    };
+
     //得到点的数组
     obear.getPointarray = function (map, sbounds) {
         //var radius = map.getDistance(marker.getPosition(), point);
@@ -80,6 +130,59 @@
         });
 
     };
+
+    /*
+      获取矩形（当前屏幕|或指定矩形）范围内的坐标点
+      2015-8-27 lwb
+    */
+    obear.getPoints = function () {
+        var pointArray;
+        var model = {};
+        model.Count = 2;
+        $.ajax({
+            type: "post",
+            url: "/Map/QueryCommunity",
+            data: { models: JSON.stringify(model) },
+            async: false,
+            success: function (data) {
+                pointArray = data;
+            }
+        });
+        return pointArray;
+    };
+
+    /*
+      判断点是否在指定图形（圆形|矩形|多边形|可扩展）范围内
+      2015-8-27 lwb
+    */
+    obear.isPointInGraph = function (point, type, graph) {
+        switch (type) {
+            case obear.Graph.Circle:
+                if (BMapLib.GeoUtils.isPointInCircle(point, graph)) {
+                    return true;
+                } else {
+                    return false;
+                }
+                break;
+            case obear.Graph.Rectangle:
+                if (BMapLib.GeoUtils.isPointInRect(point, graph.getBounds())) {
+                    return true;
+                } else {
+                    return false;
+                }
+                break;
+            case obear.Graph.Polygon:
+                if (BMapLib.GeoUtils.isPointInPolygon(point, graph)) {
+                    return true;
+                } else {
+                    return false;
+                }
+                break;
+            default:
+                return false;
+        }
+    };
+
     //批量添加点
     //obear.AddGroupMark = function (map) {
     //    map.clearOverlays();
@@ -189,6 +292,25 @@
                 map.addOverlay(polyline);
             }
         }
+    }
+    /*
+      获取兴趣点数组
+      2015-8-27 lwb
+    */
+    obear.QueryInterestpoint = function (type) {
+        var pointArray;
+        var model = {};
+        model.Type = type;
+        $.ajax({
+            type: "post",
+            url: "/Map/QueryInterestpoint",
+            data: { models: JSON.stringify(model) },
+            async: false,
+            success: function (data) {
+                pointArray = data;
+            }
+        });
+        return pointArray;
     }
     //数据库提取数据
     obear.GetInterestpoint = function (map, type) {
