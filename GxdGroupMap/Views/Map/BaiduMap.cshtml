@@ -9,6 +9,9 @@
 @section require_js_module
 {
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=mn4G2vQYgAYSwIy9HwVXTwU5"></script>
+    <!--加载鼠标绘制工具-->
+    <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
     <script>
         require(["JavaScript/common"], function () {
             require(["../../JavaScript/app/require.map.baidumap.main"]);

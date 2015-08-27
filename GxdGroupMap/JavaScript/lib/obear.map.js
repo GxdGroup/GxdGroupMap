@@ -62,11 +62,11 @@
         return marker;
     };
     //得到点的数组
-    obear.getPointarray = function (map, marker, point) {
-        var radius = map.getDistance(marker.getPosition(), point);
-        var circle = new BMap.Circle(marker.getPosition(), radius);
-        map.addOverlay(circle);
-        var sbounds = circle.getBounds();
+    obear.getPointarray = function (map, sbounds) {
+        //var radius = map.getDistance(marker.getPosition(), point);
+        //var circle = new BMap.Circle(marker.getPosition(), radius);
+        //map.addOverlay(circle);
+        //var sbounds = circle.getBounds();
         var model = {};
         var spointarray = [];
         model.Count = 2;
