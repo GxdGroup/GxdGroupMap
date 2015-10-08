@@ -77,8 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\IocConfig.cs" />
+    <Compile Include="EntityServices\AreaCheckService.cs" />
     <Compile Include="EntityServices\AreaService.cs" />
     <Compile Include="EntityServices\InterestpointService.cs" />
+    <Compile Include="IEntityContracts\IAreaCheckContract.cs" />
     <Compile Include="IEntityContracts\IAreaContract.cs" />
     <Compile Include="IEntityContracts\IInterestpointContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

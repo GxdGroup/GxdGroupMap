@@ -15,14 +15,19 @@ namespace GxdGroupMap.Controllers
     {
         private readonly IAreaContract sAreaContract;
         private readonly IInterestpointContract sInterestpointContract;
-        public MapController(IAreaContract pAreaContract, IInterestpointContract pInterestpointContract)
+        private readonly IAreaCheckContract sAreaCheckContract;
+        public MapController(IAreaContract pAreaContract, IInterestpointContract pInterestpointContract, IAreaCheckContract pAreaCheckContract)
         {
             sAreaContract = pAreaContract;
             sInterestpointContract = pInterestpointContract;
+            sAreaCheckContract = pAreaCheckContract;
         }
         // GET: Map
         public ActionResult Index()
         {
+            string commandText = @"SELECT * FROM b_areacheck";
+            List<AreaCheck> s = sAreaCheckContract.AreaChecks(commandText, null).ToList();
+            return View();
             //int Id = 1;
             ////string commandText = @"SELECT * FROM b_community where Id = @Id";            
             ////IEnumerable<Community> _comlists = sAreaContract.Communities(commandText, new { Id = Id });
@@ -47,15 +52,10 @@ namespace GxdGroupMap.Controllers
         public ActionResult Default()
         {
             string commandText = @"SELECT * FROM b_interestpoint";
-            sInterestpointContract.Interestpoints(commandText,null);
+            sInterestpointContract.Interestpoints(commandText, null);
             return View();
         }
 
-        /// <summary>
-        /// 各分类指数
-        /// </summary>
-        /// <param name="models"></param>
-        /// <returns></returns>
         [HttpPost]
         public ActionResult QueryCommunity([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
         {
@@ -65,9 +65,28 @@ namespace GxdGroupMap.Controllers
         }
         public ActionResult QueryInterestpoint([ModelBinder(typeof(JsonBinder<ComDto>))] ComDto models)
         {
-            string commandText =string.Format("SELECT * FROM b_interestpoint where Type='{0}'", models.Type);
+            string commandText = string.Format("SELECT * FROM b_interestpoint where Type='{0}'", models.Type);
             IList<Interestpoint> comList = sInterestpointContract.Interestpoints(commandText, null);
             return Json(comList);
+        }
+        [HttpPost]
+        public ActionResult QueryArea([ModelBinder(typeof(JsonBinder<AreaDto>))] AreaDto models)
+        {
+            string commandText = "";
+            if (models.AreaType == 0)
+            {
+                commandText = string.Format("SELECT * FROM b_areacheck where len(区划代码)={0}", 2);
+            }
+            else if (models.AreaType == 1)
+            {
+                commandText = string.Format("SELECT * FROM b_areacheck where len(区划代码)={0} and left(区划代码,2)={1}", 4, models.QHDM);
+            }
+            else {
+                commandText = string.Format("SELECT * FROM b_areacheck where len(区划代码)={0} and left(区划代码,4)={1}", 6, models.QHDM);
+            }
+
+            IList<AreaCheck> areaList = sAreaCheckContract.AreaChecks(commandText, null);
+            return Json(areaList);
         }
         public ActionResult BaiduMap()
         {

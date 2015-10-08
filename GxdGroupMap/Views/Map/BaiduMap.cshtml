@@ -5,6 +5,9 @@
 @section self_css
 {
     <link href="~/Content/obear.toggle.css" rel="stylesheet" />
+    <style type="text/css">
+        .selectList select { width:120px; margin:0px 0px 0px 40px;}
+    </style>
 }
 @section require_js_module
 {
@@ -31,7 +34,75 @@
             }
         });
     </script>
+
     <script src="~/JavaScript/lib/jquery.idTabs.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".selectList").each(function () {
+                var url = "/Map/QueryArea";
+                var areaJson;
+                var temp_html;
+                var oProvince = $(this).find(".province");
+                var oCity = $(this).find(".city");
+                var oDistrict = $(this).find(".district");
+                //初始化省
+                var province = function () {                   
+                    var model = {};
+                    model.AreaType = 0;
+                    temp_html = "";
+                    $.post(url, { models: JSON.stringify(model) }, function (data) {
+                        for (var j = 0; j < data.length; j++) {
+                            temp_html += "<option value=" + data[j].区划代码 + ">" + data[j].区划名称 + "</option>";
+                        }
+                        oProvince.html(temp_html);
+                        city();
+                    });
+                };
+                //赋值市
+                var city = function () {
+                    temp_html = "";                    
+                    var model = {};
+                    model.AreaType = 1;
+                    model.QHDM = oProvince.val();
+                    $.post(url, { models: JSON.stringify(model) }, function (data) {
+                        for (var j = 0; j < data.length; j++) {
+                            temp_html += "<option value='" + data[j].区划代码 + "'>" + data[j].区划名称 + "</option>";
+                        }
+                        oCity.html(temp_html);
+                        district();
+                    });                  
+                };
+                //赋值县
+                var district = function () {
+                    temp_html = "";
+                    var model = {};
+                    model.AreaType = 2;
+                    model.QHDM = oCity.val();
+                    $.post(url, { models: JSON.stringify(model) }, function (data) {
+                        for (var j = 0; j < data.length; j++) {
+                            temp_html += "<option value='" + data[j].区划代码 + "'>" + data[j].区划名称 + "</option>";
+                        }
+                        oDistrict.html(temp_html);
+                    });                  
+                };
+                //选择省改变市
+                oProvince.change(function () {
+                    //清空
+                    oCity.html('');
+                    oDistrict.html('');
+
+                    city();
+                });
+                //选择市改变县
+                oCity.change(function () {
+                    district();
+                });
+                
+                //执行
+                province();
+            });
+        });
+    </script>
 }
 
 <div id="map_tools">
@@ -42,7 +113,7 @@
 <div id="map_left">
     <div id="map_left_menu">
         <ul>
-            <li><a class="selected" href="#ani1">兴趣</a></li>
+            <li><a class="selected" href="#ani1">区划</a></li>
             <li><a href="#ani2">2</a></li>
             <li><a href="#ani3">3</a></li>
             <li><a href="#ani4">4</a></li>
@@ -50,9 +121,14 @@
     </div>
     <div id="map_left_content">
         <div id="" class="map_left_main_content">
-            <input type="checkbox" name="type" value="hospital" id="ckbHospital"> 医院
-            <input type="checkbox" name="type" value="subway" id="ckbSubway"> 地铁
-            <input type="checkbox" name="type" value="store" id="ckbStore">  商城
+            <div class="selectList">
+                <select class="province"></select><span>--省</span>
+                <select class="city"></select><span>--市</span>
+                <select class="district"></select><span>--区</span>
+            </div>
+            @*<input type="checkbox" name="type" value="hospital" id="ckbHospital"> 医院
+                <input type="checkbox" name="type" value="subway" id="ckbSubway"> 地铁
+                <input type="checkbox" name="type" value="store" id="ckbStore">  商城*@
         </div>
     </div>
 </div>
