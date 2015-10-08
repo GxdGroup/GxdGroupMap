@@ -107,7 +107,7 @@
                         var BianJie = data.边界;
                         var BianJieArray = BianJie.split('|');
                         var BianJieArrayLength = BianJieArray.length;
-                        for (var j = 0; j < 5; j++) {
+                        for (var j = 0; j < 20; j++) {
                             var YuanSu = BianJieArray[j];
                             var Lng = YuanSu.split(',')[0];
                             var Lat = YuanSu.split(',')[1];
@@ -121,7 +121,7 @@
 
                     translateCallback = function (data) {
                         if (data.status === 0) {
-                            obear.AddPolygon(map, data);
+                            //obear.AddPolygon(map, data);
                         } else {
                             alert("坐标转换失败");
                         }
