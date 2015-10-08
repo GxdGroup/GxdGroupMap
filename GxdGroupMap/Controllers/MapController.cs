@@ -69,6 +69,7 @@ namespace GxdGroupMap.Controllers
             IList<Interestpoint> comList = sInterestpointContract.Interestpoints(commandText, null);
             return Json(comList);
         }
+
         [HttpPost]
         public ActionResult QueryArea([ModelBinder(typeof(JsonBinder<AreaDto>))] AreaDto models)
         {
@@ -81,12 +82,25 @@ namespace GxdGroupMap.Controllers
             {
                 commandText = string.Format("SELECT * FROM b_areacheck where len(区划代码)={0} and left(区划代码,2)={1}", 4, models.QHDM);
             }
-            else {
+            else if (models.AreaType == 2)
+            {
                 commandText = string.Format("SELECT * FROM b_areacheck where len(区划代码)={0} and left(区划代码,4)={1}", 6, models.QHDM);
             }
 
             IList<AreaCheck> areaList = sAreaCheckContract.AreaChecks(commandText, null);
             return Json(areaList);
+        }
+
+        [HttpPost]
+        public ActionResult GetAreaByQHDM([ModelBinder(typeof(JsonBinder<GetAreaDto>))] GetAreaDto models)
+        {
+            string commandText = "";
+            commandText = string.Format("SELECT * FROM b_areacheck where 区划代码={0}", models.QHDM);
+
+            IList<AreaCheck> areaList = sAreaCheckContract.AreaChecks(commandText, null);
+            AreaCheck area = areaList.FirstOrDefault();
+
+            return Json(area);
         }
         public ActionResult BaiduMap()
         {

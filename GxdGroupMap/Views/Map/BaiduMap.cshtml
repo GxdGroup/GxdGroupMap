@@ -6,12 +6,12 @@
 {
     <link href="~/Content/obear.toggle.css" rel="stylesheet" />
     <style type="text/css">
-        .selectList select { width:120px; margin:0px 0px 0px 40px;}
+        .selectList select { width: 120px; margin: 0px 0px 0px 40px; }
     </style>
 }
 @section require_js_module
 {
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=mn4G2vQYgAYSwIy9HwVXTwU5"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=mn4G2vQYgAYSwIy9HwVXTwU5"></script>
     <!--加载鼠标绘制工具-->
     <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
     <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
@@ -46,7 +46,7 @@
                 var oCity = $(this).find(".city");
                 var oDistrict = $(this).find(".district");
                 //初始化省
-                var province = function () {                   
+                var province = function () {
                     var model = {};
                     model.AreaType = 0;
                     temp_html = "";
@@ -60,7 +60,7 @@
                 };
                 //赋值市
                 var city = function () {
-                    temp_html = "";                    
+                    temp_html = "";
                     var model = {};
                     model.AreaType = 1;
                     model.QHDM = oProvince.val();
@@ -70,7 +70,7 @@
                         }
                         oCity.html(temp_html);
                         district();
-                    });                  
+                    });
                 };
                 //赋值县
                 var district = function () {
@@ -83,7 +83,7 @@
                             temp_html += "<option value='" + data[j].区划代码 + "'>" + data[j].区划名称 + "</option>";
                         }
                         oDistrict.html(temp_html);
-                    });                  
+                    });
                 };
                 //选择省改变市
                 oProvince.change(function () {
@@ -97,7 +97,36 @@
                 oCity.change(function () {
                     district();
                 });
-                
+
+                //选择区县展示多边形
+                oDistrict.change(function () {
+                    var mArray = [];
+                    var model = {};
+                    model.QHDM = oDistrict.val();
+                    $.post("/Map/GetAreaByQHDM", { models: JSON.stringify(model) }, function (data) {
+                        var BianJie = data.边界;
+                        var BianJieArray = BianJie.split('|');
+                        var BianJieArrayLength = BianJieArray.length;
+                        for (var j = 0; j < 5; j++) {
+                            var YuanSu = BianJieArray[j];
+                            var Lng = YuanSu.split(',')[0];
+                            var Lat = YuanSu.split(',')[1];
+
+                            mArray.push(new BMap.Point(Lng, Lat));                       
+                        }
+
+                        var convertor = new BMap.Convertor();
+                        convertor.translate(mArray, 1, 5, translateCallback)
+                    });
+
+                    translateCallback = function (data) {
+                        if (data.status === 0) {
+                            obear.AddPolygon(map, data);
+                        } else {
+                            alert("坐标转换失败");
+                        }
+                    }
+                });
                 //执行
                 province();
             });

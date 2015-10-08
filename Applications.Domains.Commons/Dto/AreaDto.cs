@@ -11,4 +11,9 @@ namespace Application.Domain.Common.Dto
         public int AreaType { get; set; }
         public int QHDM { get; set; }
     }
+
+    public class GetAreaDto
+    {
+        public int QHDM { get; set; }
+    }
 }

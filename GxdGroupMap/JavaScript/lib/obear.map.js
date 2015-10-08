@@ -130,7 +130,15 @@
         });
 
     };
-
+    /*
+     添加多边形
+     2015-10-8 lwb
+    */
+    obear.AddPolygon = function (map, array) {
+        var polygon = new BMap.Polygon(array,
+            { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
+        map.addOverlay(polygon);
+    }
     /*
       获取矩形（当前屏幕|或指定矩形）范围内的坐标点
       2015-8-27 lwb
