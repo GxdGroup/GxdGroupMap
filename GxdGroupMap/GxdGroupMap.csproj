@@ -321,6 +321,10 @@
       <Project>{a53724b6-cda5-4167-a2df-ed850e4bdf97}</Project>
       <Name>Gxd.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gxd.Utility\Gxd.Utility.csproj">
+      <Project>{33a095a3-64c7-410e-b324-43537773610b}</Project>
+      <Name>Gxd.Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gxd.Web\Gxd.Web.csproj">
       <Project>{54182a5d-5ff6-4c68-9397-92c87f733cfb}</Project>
       <Name>Gxd.Web</Name>

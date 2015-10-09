@@ -7,6 +7,7 @@
     <link href="~/Content/obear.toggle.css" rel="stylesheet" />
     <style type="text/css">
         .selectList select { width: 120px; margin: 0px 0px 0px 40px; }
+        #btnKaiQi { margin-top:20px;}
     </style>
 }
 @section require_js_module
@@ -35,103 +36,7 @@
         });
     </script>
 
-    <script src="~/JavaScript/lib/jquery.idTabs.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".selectList").each(function () {
-                var url = "/Map/QueryArea";
-                var areaJson;
-                var temp_html;
-                var oProvince = $(this).find(".province");
-                var oCity = $(this).find(".city");
-                var oDistrict = $(this).find(".district");
-                //初始化省
-                var province = function () {
-                    var model = {};
-                    model.AreaType = 0;
-                    temp_html = "";
-                    $.post(url, { models: JSON.stringify(model) }, function (data) {
-                        for (var j = 0; j < data.length; j++) {
-                            temp_html += "<option value=" + data[j].区划代码 + ">" + data[j].区划名称 + "</option>";
-                        }
-                        oProvince.html(temp_html);
-                        city();
-                    });
-                };
-                //赋值市
-                var city = function () {
-                    temp_html = "";
-                    var model = {};
-                    model.AreaType = 1;
-                    model.QHDM = oProvince.val();
-                    $.post(url, { models: JSON.stringify(model) }, function (data) {
-                        for (var j = 0; j < data.length; j++) {
-                            temp_html += "<option value='" + data[j].区划代码 + "'>" + data[j].区划名称 + "</option>";
-                        }
-                        oCity.html(temp_html);
-                        district();
-                    });
-                };
-                //赋值县
-                var district = function () {
-                    temp_html = "";
-                    var model = {};
-                    model.AreaType = 2;
-                    model.QHDM = oCity.val();
-                    $.post(url, { models: JSON.stringify(model) }, function (data) {
-                        for (var j = 0; j < data.length; j++) {
-                            temp_html += "<option value='" + data[j].区划代码 + "'>" + data[j].区划名称 + "</option>";
-                        }
-                        oDistrict.html(temp_html);
-                    });
-                };
-                //选择省改变市
-                oProvince.change(function () {
-                    //清空
-                    oCity.html('');
-                    oDistrict.html('');
-
-                    city();
-                });
-                //选择市改变县
-                oCity.change(function () {
-                    district();
-                });
-
-                //选择区县展示多边形
-                oDistrict.change(function () {
-                    var mArray = [];
-                    var model = {};
-                    model.QHDM = oDistrict.val();
-                    $.post("/Map/GetAreaByQHDM", { models: JSON.stringify(model) }, function (data) {
-                        var BianJie = data.边界;
-                        var BianJieArray = BianJie.split('|');
-                        var BianJieArrayLength = BianJieArray.length;
-                        for (var j = 0; j < 20; j++) {
-                            var YuanSu = BianJieArray[j];
-                            var Lng = YuanSu.split(',')[0];
-                            var Lat = YuanSu.split(',')[1];
-
-                            mArray.push(new BMap.Point(Lng, Lat));                       
-                        }
-
-                        var convertor = new BMap.Convertor();
-                        convertor.translate(mArray, 1, 5, translateCallback)
-                    });
-
-                    translateCallback = function (data) {
-                        if (data.status === 0) {
-                            //obear.AddPolygon(map, data);
-                        } else {
-                            alert("坐标转换失败");
-                        }
-                    }
-                });
-                //执行
-                province();
-            });
-        });
-    </script>
+    <script src="~/JavaScript/lib/jquery.idTabs.js"></script>    
 }
 
 <div id="map_tools">
@@ -153,8 +58,12 @@
             <div class="selectList">
                 <select class="province"></select><span>--省</span>
                 <select class="city"></select><span>--市</span>
-                <select class="district"></select><span>--区</span>
+                <select class="district"></select><span>--区</span>               
             </div>
+            <br />
+            <input type="button" id="btnOpen" value="开启编辑--当前定位区块" />
+            <input type="button" id="btnClose" value="关闭编辑--当前定位区块" />
+            <input type="button" id="btnSave" value="保存--当前定位区块" />
             @*<input type="checkbox" name="type" value="hospital" id="ckbHospital"> 医院
                 <input type="checkbox" name="type" value="subway" id="ckbSubway"> 地铁
                 <input type="checkbox" name="type" value="store" id="ckbStore">  商城*@

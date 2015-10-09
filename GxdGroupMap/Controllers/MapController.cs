@@ -2,6 +2,7 @@
 using Application.Domain.Common.Dto;
 using Application.Service;
 using Gxd.Domain;
+using Gxd.Utility;
 using Gxd.Web.Mvc.Binders;
 using System;
 using System.Collections.Generic;
@@ -98,7 +99,7 @@ namespace GxdGroupMap.Controllers
             commandText = string.Format("SELECT * FROM b_areacheck where 区划代码={0}", models.QHDM);
 
             IList<AreaCheck> areaList = sAreaCheckContract.AreaChecks(commandText, null);
-            AreaCheck area = areaList.FirstOrDefault();
+            AreaCheck area = areaList.FirstOrDefault();           
 
             return Json(area);
         }

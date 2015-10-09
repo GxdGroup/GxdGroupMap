@@ -134,10 +134,18 @@
      添加多边形
      2015-10-8 lwb
     */
-    obear.AddPolygon = function (map, array) {
-        var polygon = new BMap.Polygon(array,
-            { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
+    obear.CreatePolygon = function (map, arr) {
+        map.panTo(arr[0]);
+        var polygon = new BMap.Polygon(arr, { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });       
         map.addOverlay(polygon);
+
+        return polygon;
+    };
+    obear.OpenPolygon = function (p) {
+        p.enableEditing();
+    }
+    obear.ClosePolygon = function (p) {
+        p.disableEditing();
     }
     /*
       获取矩形（当前屏幕|或指定矩形）范围内的坐标点
