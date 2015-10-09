@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Dto\AreaDto.cs" />
     <Compile Include="Dto\ComDto.cs" />
+    <Compile Include="Dto\UpdateFieldDto.cs" />
     <Compile Include="Models\AreaCheck.cs" />
     <Compile Include="Models\Community.cs" />
     <Compile Include="Models\Interestpoint.cs" />

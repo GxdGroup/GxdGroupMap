@@ -252,14 +252,22 @@
                     var _lat = _polygon[i].getPath()[j].lat;
                     s += _lng + ',' + _lat + '|';
                 }
-                if (_pLength > 1)
-                { 
-                    ss += s + ';';
+                if (_pLength > 1) {
+                    ss += s.substring(0, s.length - 1) + ';';
+                } else {
+                    ss = s.substring(0, s.length - 1);
                 }
             };
             //如数据库
-            $.post(url, { models: JSON.stringify(model) }, function (data) {
-               
+            var model = {};
+            model.Id = _pId;
+            model.Field = ss;
+            $.post("/Map/updateAreaCheckById", { models: JSON.stringify(model) }, function (data) {
+                if (data == 1) {
+                    alert("更新成功");
+                } else {
+                    alert("更新失败");
+                }
             });
         }
     });

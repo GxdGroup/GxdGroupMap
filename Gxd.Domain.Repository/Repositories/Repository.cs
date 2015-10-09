@@ -49,7 +49,10 @@ namespace Gxd.Domain.Repository
         {
             return Conn.Query<TEntity>(sql, param, transaction, buffered, commandTimeout, commandType).ToList();
         }
-
+        public int Execute(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
+        {
+            return Conn.Execute(sql, param, transaction, commandTimeout, commandType);
+        }
         /// <summary>
         /// 增
         /// </summary>
@@ -64,10 +67,6 @@ namespace Gxd.Domain.Repository
         {
             throw new NotImplementedException();
         }
-
-
-
-
 
         public IList<TEntity> Query(object sqlParas)
         {
@@ -113,6 +112,8 @@ namespace Gxd.Domain.Repository
         {
             throw new NotImplementedException();
         }
+
+        
         #endregion
     }
 }

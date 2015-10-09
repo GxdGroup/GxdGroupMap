@@ -35,7 +35,7 @@ namespace Gxd.Domain
         /// <param name="commandType">执行类型</param>
         /// <returns></returns>
         IList<TEntity> Query(string sql, object param = null, IDbTransaction transaction = null, bool buffered = true, int? commandTimeout = null, CommandType? commandType = null);
-
+        int Execute(string sql, object param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null);
         long Add(TEntity model);
         List<TEntity> Add(IList<TEntity> modeList);
         void Update(TEntity model);
